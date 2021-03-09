@@ -87,9 +87,9 @@ $ php artisan db:seed
 
 ## Authors
 
-* **Axel Zublena** - [AxelZublena](https://github.com/AxelZublena)
 * **Aadya Gautam** - [gaut0003](https://github.com/gaut0003)
 * **Melvin Scheele** - [TophatPigeonno](https://github.com/TophatPigeonno)
 * **Andrew Rozs** - [RYe01](https://github.com/RYe01)
 * **Bogomil Dochev** - [BogomilDochev](https://github.com/BogomilDochev)
 * **Jonah Zwanenburg** - [JoanWithTehBone](https://github.com/JoanWithTehBone)
+* **Axel Zublena** - [AxelZublena](https://github.com/AxelZublena)
