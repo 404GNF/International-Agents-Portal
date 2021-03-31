@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BrochureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+//brochure route
+Route::resource('/brochures', BrochureController::class);
