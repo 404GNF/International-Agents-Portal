@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,11 @@ Route::get('/', function () {
 });
 
 
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+// File upload routes
+//Route::get('/upload-file', [FileController::class, 'create']);
+//Route::post('/upload-file', [FileUpload::class, 'store']);
+Route::resource('/files', FileController::class);
