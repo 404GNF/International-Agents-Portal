@@ -15,6 +15,7 @@ class CreateLeafletsTable extends Migration
     {
         Schema::create('leaflets', function (Blueprint $table) {
             $table->id();
+            $table->string('img_url');
             $table->timestamps();
         });
     }

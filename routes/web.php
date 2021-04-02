@@ -8,6 +8,7 @@ use App\Http\Controllers\LeafletController;
 use App\Http\Controllers\RollUpController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,8 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+//brochure route
+Route::resource('/brochures', BrochureController::class);
 // File upload routes
 //Route::get('/upload-file', [FileController::class, 'create']);
 //Route::post('/upload-file', [FileUpload::class, 'store']);
@@ -40,3 +43,4 @@ Route::resource('/posters', PosterController::class);
 Route::resource('/videos', VideoController::class);
 
 Route::view('/howToApply', 'apply');
+

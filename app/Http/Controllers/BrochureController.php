@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Brochure;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class BrochureController extends Controller
 {
     /**
@@ -72,9 +74,13 @@ class BrochureController extends Controller
      */
     public function update(Request $request, Brochure $brochure)
     {
+
+        //
+
         $brochure->update($this->validateBrochure($request));
 
         return redirect(route('brochures.index', $brochure))->with('status', 'Brochure updated!');
+
     }
 
     /**
@@ -85,6 +91,7 @@ class BrochureController extends Controller
      */
     public function destroy(Brochure $brochure)
     {
+        //
         $brochure->delete();
 
         return redirect(route('brochures.index'));

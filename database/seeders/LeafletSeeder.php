@@ -13,6 +13,6 @@ class LeafletSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Leaflet::factory(15)->create();
     }
 }

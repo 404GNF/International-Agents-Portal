@@ -22,6 +22,7 @@ class BrochureFactory extends Factory
     public function definition()
     {
         return [
+            //
             'img_url' => $this->faker->imageUrl()
         ];
     }
