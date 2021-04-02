@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brochure;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
+
 use Illuminate\Support\Facades\Storage;
-=======
->>>>>>> origin
 
 class BrochureController extends Controller
 {
@@ -18,17 +16,10 @@ class BrochureController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-       $files = Storage::allFiles('public/brochures/');
-        return view('brochures.index', [
-            'files' => $files
-        ]);
-=======
         //Render a list of a resource
         $brochures = Brochure::latest()->get();
 
         return view('resources.brochures.index', ['brochures'=>$brochures]);
->>>>>>> origin
     }
 
     /**
@@ -71,11 +62,7 @@ class BrochureController extends Controller
      */
     public function edit(Brochure $brochure)
     {
-<<<<<<< HEAD
-        //
-=======
         return view('resources.brochures.edit', ['brochure'=>$brochure]);
->>>>>>> origin
     }
 
     /**
@@ -87,13 +74,13 @@ class BrochureController extends Controller
      */
     public function update(Request $request, Brochure $brochure)
     {
-<<<<<<< HEAD
+
         //
-=======
+
         $brochure->update($this->validateBrochure($request));
 
         return redirect(route('brochures.index', $brochure))->with('status', 'Brochure updated!');
->>>>>>> origin
+
     }
 
     /**
@@ -104,9 +91,7 @@ class BrochureController extends Controller
      */
     public function destroy(Brochure $brochure)
     {
-<<<<<<< HEAD
         //
-=======
         $brochure->delete();
 
         return redirect(route('brochures.index'));
@@ -120,6 +105,5 @@ class BrochureController extends Controller
         return $request->validate([
             'img_url' => 'required'
         ]);
->>>>>>> origin
     }
 }

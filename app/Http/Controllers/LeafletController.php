@@ -14,7 +14,9 @@ class LeafletController extends Controller
      */
     public function index()
     {
-        return view('resources.leaflets.index');
+        $leaflets = Leaflet::latest()->get();
+
+        return view('resources.leaflets.index', ['leaflets'=>$leaflets]);
     }
 
     /**
@@ -57,7 +59,7 @@ class LeafletController extends Controller
      */
     public function edit(Leaflet $leaflet)
     {
-        //
+        return view('resources.leaflets.edit', ['leaflet'=>$leaflet]);
     }
 
     /**
@@ -69,7 +71,9 @@ class LeafletController extends Controller
      */
     public function update(Request $request, Leaflet $leaflet)
     {
-        //
+        $leaflet->update($this->validateLeaflet($request));
+
+        return redirect(route('leaflets.index', $leaflet))->with('status', 'Leaflet updated!');
     }
 
     /**
@@ -81,5 +85,18 @@ class LeafletController extends Controller
     public function destroy(Leaflet $leaflet)
     {
         //
+        $leaflet->delete();
+
+        return redirect(route('leaflets.index'));
+    }
+
+    /**
+     * @return array
+     */
+    protected function validateLeaflet(Request $request): array
+    {
+        return $request->validate([
+            'img_url' => 'required'
+        ]);
     }
 }

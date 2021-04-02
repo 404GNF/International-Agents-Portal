@@ -23,6 +23,7 @@ class LeafletFactory extends Factory
     {
         return [
             //
+            'img_url' => $this->faker->imageUrl()
         ];
     }
 }
