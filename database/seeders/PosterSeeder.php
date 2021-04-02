@@ -13,6 +13,6 @@ class PosterSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Poster::factory(15)->create();
     }
 }

@@ -11,4 +11,18 @@
             </div>
         </div>
     </section>
+
+    @foreach($posters as $poster)
+        <img style="width:250px; height:300px ; margin-left: 40px; margin-top: 40px; border-radius: 25px;" src="{{$poster->img_url}}" alt="Post picture"><br>
+        <a style="margin-left:120px" href = "/posters/{{$poster->id}}/edit" class="button is-warning">Edit</a>
+
+        <form class = "form" method="POST" action="/posters/{{ $poster->id }}">
+            @csrf
+            @method('DELETE')
+
+            <button style="margin-top:-40px; margin-left:190px" type="submit" class="button is-danger">Delete</button>
+        </form>
+
+@endforeach
+
 @endsection

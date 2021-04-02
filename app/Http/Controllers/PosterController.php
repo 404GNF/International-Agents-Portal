@@ -14,7 +14,10 @@ class PosterController extends Controller
      */
     public function index()
     {
-        return view('resources.posters.index');
+        //Render a list of a resource
+        $posters = Poster::latest()->get();
+
+        return view('resources.posters.index', ['posters'=>$posters]);
     }
 
     /**
@@ -57,7 +60,7 @@ class PosterController extends Controller
      */
     public function edit(Poster $poster)
     {
-        //
+        return view('resources.posters.edit', ['poster'=>$poster]);
     }
 
     /**
@@ -69,7 +72,9 @@ class PosterController extends Controller
      */
     public function update(Request $request, Poster $poster)
     {
-        //
+        $poster->update($this->validatePoster($request));
+
+        return redirect(route('posters.index', $poster))->with('status', 'Poster updated!');
     }
 
     /**
@@ -80,6 +85,18 @@ class PosterController extends Controller
      */
     public function destroy(Poster $poster)
     {
-        //
+        $poster->delete();
+
+        return redirect(route('posters.index'));
+    }
+
+    /**
+     * @return array
+     */
+    protected function validatePoster(Request $request): array
+    {
+        return $request->validate([
+            'img_url' => 'required'
+        ]);
     }
 }

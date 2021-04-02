@@ -15,6 +15,7 @@ class CreatePostersTable extends Migration
     {
         Schema::create('posters', function (Blueprint $table) {
             $table->id();
+            $table->string('img_url');
             $table->timestamps();
         });
     }
