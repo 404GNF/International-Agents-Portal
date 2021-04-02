@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Brochure extends Model
+class File extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-=======
 
-    protected $guarded = [];
->>>>>>> origin
+    protected $fillable = [
+        'name',
+        'file_path'
+    ];
 }

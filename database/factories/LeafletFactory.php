@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Brochure;
+use App\Models\Leaflet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BrochureFactory extends Factory
+class LeafletFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Brochure::class;
+    protected $model = Leaflet::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +22,7 @@ class BrochureFactory extends Factory
     public function definition()
     {
         return [
-<<<<<<< HEAD
             //
-=======
-            'img_url' => $this->faker->imageUrl()
->>>>>>> origin
         ];
     }
 }

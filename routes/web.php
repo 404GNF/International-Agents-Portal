@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\BrochureController;
+use App\Http\Controllers\PosterController;
+use App\Http\Controllers\VideoController;
+use App\Http\Controllers\LeafletController;
+use App\Http\Controllers\RollUpController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrochureController;
 
@@ -19,10 +25,24 @@ Route::get('/', function () {
 });
 
 
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+<<<<<<< HEAD
 //brochure route
 Route::resource('/brochures', BrochureController::class);
+=======
+// File upload routes
+//Route::get('/upload-file', [FileController::class, 'create']);
+//Route::post('/upload-file', [FileUpload::class, 'store']);
+Route::resource('/files', FileController::class);
+
+Route::resource('/brochures', BrochureController::class);
+Route::resource('/leaflets', LeafletController::class);
+Route::resource('/rollUps', RollUpController::class);
+Route::resource('/posters', PosterController::class);
+Route::resource('/videos', VideoController::class);
+
+Route::view('/howToApply', 'apply');
+>>>>>>> origin
