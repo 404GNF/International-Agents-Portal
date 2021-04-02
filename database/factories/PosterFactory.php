@@ -18,11 +18,11 @@ class PosterFactory extends Factory
      * Define the model's default state.
      *
      * @return array
-     */
-    public function definition()
-    {
-        return [
-            //
-        ];
-    }
+     */  public function definition()
+{
+    return [
+        'img_url' => $this->faker->imageUrl()
+    ];
 }
+}
+
