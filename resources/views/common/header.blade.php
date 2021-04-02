@@ -13,7 +13,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item">
+            <a href = "/" class="navbar-item {{ Request::path() === '/' ? "is-active" : "" }}">
                 Home
             </a>
 
@@ -23,19 +23,24 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item">
+                    <a href="/brochures"
+                            class="navbar-item {{ Request::path() === 'brochures' ? "is-active" : "" }}" >
                         Brochures
                     </a>
-                    <a class="navbar-item">
+                    <a href="/leaflets"
+                            class="navbar-item {{ Request::path() === 'leaflets' ? "is-active" : "" }}">
                         Leaflets
                     </a>
-                    <a class="navbar-item">
+                    <a href="/rollUps"
+                            class="navbar-item {{ Request::path() === 'rollUps' ? "is-active" : "" }}">
                         Roll-ups
                     </a>
-                    <a class="navbar-item">
+                    <a href="/posters"
+                            class="navbar-item {{ Request::path() === 'posters' ? "is-active" : "" }}">
                         Posters
                     </a>
-                    <a class="navbar-item">
+                    <a href="/videos"
+                            class="navbar-item {{ Request::path() === 'videos' ? "is-active" : "" }}">
                         Videos
                     </a>
                 </div>
@@ -57,7 +62,7 @@
                     </a>
                 </div>
             </div>
-            <a class="navbar-item">
+            <a href = "/howToApply" class="navbar-item {{ Request::path() === 'howToApply' ? "is-active" : "" }}">
                 How to apply?
             </a>
         </div>
