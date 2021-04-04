@@ -8,22 +8,40 @@
         >
             <div class="container">
                 <p class="title is-2">Brochures</p>
+                <button class="button is-primary"><a href="/brochures/create">Add New Brochure</a></button>
             </div>
         </div>
     </section>
 
-@foreach($brochures as $brochure)
-    <img style="width:250px; height:300px ; margin-left: 40px; margin-top: 40px; border-radius: 25px;" src="{{$brochure->img_url}}" alt="Post picture"><br>
-    <a style="margin-left:120px" href = "/brochures/{{$brochure->id}}/edit" class="button is-warning">Edit</a>
+    <div class="container">
+        <div class="columns is-multiline">
+        @foreach($brochures as $brochure)
+            <div class="column is-one-third">
+                <h2>{{ $brochure->title }}</h2>
+                <img class="thumbnails" src="{{$brochure->img_url}}" alt="{{ $brochure->title }}"><br>
+                <a href = "/brochures/{{$brochure->id}}/edit">Edit</a>
 
-    <form class = "form" method="POST" action="/brochures/{{ $brochure->id }}">
-        @csrf
-        @method('DELETE')
+                <form class = "form" method="POST" action="/brochures/{{ $brochure->id }}">
+                    @csrf
+                    @method('DELETE')
 
-        <button style="margin-top:-40px; margin-left:190px" type="submit" class="button is-danger">Delete</button>
-    </form>
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
 
+            <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                <p class="image">
+                    <img src="{{ $brochure->img_url }}" alt="{{ $brochure->title }}">
+                </p>
+                </div>
+                <button id="close" class="modal-close is-large" aria-label="close"></button>
+            </div>
 
-@endforeach
+        @endforeach
+        </div>
+    </div>
+    
 
 @endsection

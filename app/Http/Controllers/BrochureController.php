@@ -29,7 +29,7 @@ class BrochureController extends Controller
      */
     public function create()
     {
-        //
+        return view('resources.brochures.create');
     }
 
     /**
@@ -40,7 +40,9 @@ class BrochureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Brochure::create($this->validateBrochure($request));
+
+        return redirect(route('brochures.index'));
     }
 
     /**
@@ -103,7 +105,8 @@ class BrochureController extends Controller
     protected function validateBrochure(Request $request): array
     {
         return $request->validate([
-            'img_url' => 'required'
+            'img_url' => 'required',
+            'title' => 'required'
         ]);
     }
 }

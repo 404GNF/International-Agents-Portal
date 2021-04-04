@@ -15,7 +15,9 @@ class CreateBrochuresTable extends Migration
     {
         Schema::create('brochures', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('img_url');
+            $table->boolean('visibility')->default(true);
             $table->timestamps();
         });
     }

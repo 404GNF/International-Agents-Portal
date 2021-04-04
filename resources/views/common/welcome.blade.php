@@ -19,6 +19,6 @@
 
 @yield('content')
 
-
+<script type="text/javascript" src="{{ asset('js/functions.js') }}"></script>
 </body>
 </html>
