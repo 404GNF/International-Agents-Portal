@@ -1,0 +1,29 @@
+.bodycontainer {
+  padding-top: 50px;
+}
+
+.is-4 {
+  text-align: center;
+}
+
+.thumbnails {
+  display: block;
+  margin: 0 auto;
+}
+
+.icons-under-image {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.edit {
+  margin: 0 auto;
+}
+
+.is-one-third {
+  margin-bottom: 50px;
+}
+
+input {
+  margin-bottom: 10px;
+}

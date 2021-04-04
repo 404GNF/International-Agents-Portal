@@ -13,19 +13,22 @@
         </div>
     </section>
 
-    <div class="container">
+    <div class="container bodycontainer">
         <div class="columns is-multiline">
         @foreach($brochures as $brochure)
             <div class="column is-one-third">
-                <h2>{{ $brochure->title }}</h2>
+                <h2 class="title is-4">{{ $brochure->title }}</h2>
                 <img class="thumbnails" src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}"><br>
-                <a href = "/brochures/{{$brochure->id}}/edit">Edit</a>
 
                 <form class = "form" method="POST" action="/brochures/{{ $brochure->id }}">
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit">Delete</button>
+                    <div class="field is-grouped icons-under-image">
+                        <a href="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" download class="button is-info download"><i class="fas fa-download"></i></a>
+                        <a class="button is-warning edit" href = "/brochures/{{$brochure->id}}/edit"><i class="fas fa-edit"></i></a>
+                        <button onclick="return confirm('Are you sure?')" class="button is-danger remove" type="submit"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </form>
             </div>
 

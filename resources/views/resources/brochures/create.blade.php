@@ -21,7 +21,7 @@
 
                                 <label class="label" for="title">Image Title</label>
                                 <div class="control">
-                                    <input name="title" class="input @error('title') is-danger @enderror"
+                                    <input id="file-input" name="title" class="input @error('title') is-danger @enderror"
                                         type="text">
                                 </div>
                                 @error('title')

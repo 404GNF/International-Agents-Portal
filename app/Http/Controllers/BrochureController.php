@@ -94,7 +94,7 @@ class BrochureController extends Controller
 
         $brochure->update($this->validateBrochure($request));
 
-        return redirect(route('resources.brochures.index', $brochure))->with('status', 'Brochure updated!');
+        return redirect('/brochures');
 
     }
 
@@ -110,6 +110,13 @@ class BrochureController extends Controller
         $brochure->delete();
 
         return redirect('/brochures');
+    }
+
+    protected function validateBrochure(Request $request): array
+    {
+        return $request->validate([
+            'title' => 'required'
+        ]);
     }
 
 }
