@@ -40,9 +40,22 @@ class BrochureController extends Controller
      */
     public function store(Request $request)
     {
-        Brochure::create($this->validateBrochure($request));
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required|mimes:jpg,png,jpeg|max:20480'
+        ]);
 
-        return redirect(route('brochures.index'));
+        $newImageName = time() . '-' . $request->title . '.' . $request->image->extension();
+
+        $request->image->move(public_path('/storage/brochures'), $newImageName);
+
+
+        Brochure::create([
+            'title' => $request->input('title'),
+            'image_path' => $newImageName
+        ]);
+
+        return redirect('/brochures');
     }
 
     /**
@@ -81,7 +94,7 @@ class BrochureController extends Controller
 
         $brochure->update($this->validateBrochure($request));
 
-        return redirect(route('brochures.index', $brochure))->with('status', 'Brochure updated!');
+        return redirect(route('resources.brochures.index', $brochure))->with('status', 'Brochure updated!');
 
     }
 
@@ -93,20 +106,10 @@ class BrochureController extends Controller
      */
     public function destroy(Brochure $brochure)
     {
-        //
+        unlink(public_path().'/storage/brochures/'.$brochure->image_path);
         $brochure->delete();
 
-        return redirect(route('brochures.index'));
+        return redirect('/brochures');
     }
 
-    /**
-     * @return array
-     */
-    protected function validateBrochure(Request $request): array
-    {
-        return $request->validate([
-            'img_url' => 'required',
-            'title' => 'required'
-        ]);
-    }
 }

@@ -49,13 +49,8 @@
                 <div class="control">
                     <button type="reset" class="button is-warning">Reset</button>
                 </div>
-                <div class="control">
-
-
                     </form>
 
-
-                </div>
             </div>
         </div>
     </div>

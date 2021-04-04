@@ -8,7 +8,7 @@
         >
             <div class="container">
                 <p class="title is-2">Brochures</p>
-                <button class="button is-primary"><a href="/brochures/create">Add New Brochure</a></button>
+                <div onclick="window.location.href='/brochures/create'" class="button is-primary">Add New Brochure</div>
             </div>
         </div>
     </section>
@@ -18,7 +18,7 @@
         @foreach($brochures as $brochure)
             <div class="column is-one-third">
                 <h2>{{ $brochure->title }}</h2>
-                <img class="thumbnails" src="{{$brochure->img_url}}" alt="{{ $brochure->title }}"><br>
+                <img class="thumbnails" src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}"><br>
                 <a href = "/brochures/{{$brochure->id}}/edit">Edit</a>
 
                 <form class = "form" method="POST" action="/brochures/{{ $brochure->id }}">
@@ -33,7 +33,7 @@
                 <div class="modal-background"></div>
                 <div class="modal-content">
                 <p class="image">
-                    <img src="{{ $brochure->img_url }}" alt="{{ $brochure->title }}">
+                    <img src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}">
                 </p>
                 </div>
                 <button id="close" class="modal-close is-large" aria-label="close"></button>
