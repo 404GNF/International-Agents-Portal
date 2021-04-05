@@ -1,0 +1,41 @@
+.bodycontainer {
+  padding-top: 50px;
+}
+
+.is-4 {
+  text-align: center;
+  color: white;
+}
+
+h2 span {
+  background-color: #3273dc;
+  padding: 10px;
+}
+
+.thumbnails {
+  display: block;
+  margin: 0 auto;
+}
+
+.icons-under-image {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.edit {
+  margin: 0 auto;
+}
+
+.is-one-third {
+  margin-bottom: 50px;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+img {
+  height: 750px;
+  object-fit: cover;
+  cursor: pointer;
+}

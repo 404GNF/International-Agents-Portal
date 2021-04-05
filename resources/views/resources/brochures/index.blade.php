@@ -8,22 +8,43 @@
         >
             <div class="container">
                 <p class="title is-2">Brochures</p>
+                <div onclick="window.location.href='/brochures/create'" class="button is-primary">Add New Brochure</div>
             </div>
         </div>
     </section>
 
-@foreach($brochures as $brochure)
-    <img style="width:250px; height:300px ; margin-left: 40px; margin-top: 40px; border-radius: 25px;" src="{{$brochure->img_url}}" alt="Post picture"><br>
-    <a style="margin-left:120px" href = "/brochures/{{$brochure->id}}/edit" class="button is-warning">Edit</a>
+    <div class="container bodycontainer">
+        <div class="columns is-multiline">
+        @foreach($brochures as $brochure)
+            <div class="column is-one-third">
+                <h2 class="title is-4"><span>{{ $brochure->title }}</span></h2>
+                <img class="thumbnails" src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}"><br>
 
-    <form class = "form" method="POST" action="/brochures/{{ $brochure->id }}">
-        @csrf
-        @method('DELETE')
+                <form class = "form" method="POST" action="/brochures/{{ $brochure->id }}">
+                    @csrf
+                    @method('DELETE')
 
-        <button style="margin-top:-40px; margin-left:190px" type="submit" class="button is-danger">Delete</button>
-    </form>
+                    <div class="field is-grouped icons-under-image">
+                        <a href="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" download class="button is-info download"><i class="fas fa-download"></i></a>
+                        <a class="button is-warning edit" href = "/brochures/{{$brochure->id}}/edit"><i class="fas fa-edit"></i></a>
+                        <button onclick="return confirm('Are you sure?')" class="button is-danger remove" type="submit"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </form>
+            </div>
 
+            <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <p class="image">
+                        <a href="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" download><img src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}"></a>
+                    </p>
+                </div>
+                <button id="close" class="modal-close is-large" aria-label="close"></button>
+            </div>
 
-@endforeach
+        @endforeach
+        </div>
+    </div>
+    
 
 @endsection
