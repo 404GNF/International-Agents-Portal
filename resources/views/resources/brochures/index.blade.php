@@ -17,7 +17,7 @@
         <div class="columns is-multiline">
         @foreach($brochures as $brochure)
             <div class="column is-one-third">
-                <h2 class="title is-4">{{ $brochure->title }}</h2>
+                <h2 class="title is-4"><span>{{ $brochure->title }}</span></h2>
                 <img class="thumbnails" src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}"><br>
 
                 <form class = "form" method="POST" action="/brochures/{{ $brochure->id }}">
@@ -35,9 +35,9 @@
             <div class="modal">
                 <div class="modal-background"></div>
                 <div class="modal-content">
-                <p class="image">
-                    <img src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}">
-                </p>
+                    <p class="image">
+                        <a href="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" download><img src="{{ asset('storage') . "/brochures/" . $brochure->image_path }}" alt="{{ $brochure->title }}"></a>
+                    </p>
                 </div>
                 <button id="close" class="modal-close is-large" aria-label="close"></button>
             </div>

@@ -89,13 +89,10 @@ class BrochureController extends Controller
      */
     public function update(Request $request, Brochure $brochure)
     {
-
-        //
-
+        
         $brochure->update($this->validateBrochure($request));
 
         return redirect('/brochures');
-
     }
 
     /**

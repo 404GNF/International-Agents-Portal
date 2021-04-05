@@ -4,6 +4,12 @@
 
 .is-4 {
   text-align: center;
+  color: white;
+}
+
+h2 span {
+  background-color: #3273dc;
+  padding: 10px;
 }
 
 .thumbnails {
@@ -26,4 +32,10 @@
 
 input {
   margin-bottom: 10px;
+}
+
+img {
+  height: 750px;
+  object-fit: cover;
+  cursor: pointer;
 }

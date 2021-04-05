@@ -51,7 +51,6 @@
                     </div>
 
                     <div class="field is-grouped">
-                        {{-- Here are the form buttons: save, reset and cancel --}}
                         <div class="control">
                             <input type="submit" class="button is-primary" value="Submit">
                         </div>
