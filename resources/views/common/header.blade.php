@@ -17,34 +17,10 @@
                 Home
             </a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    Resources
-                </a>
+            <a href = "/resources" class="navbar-item {{ Request::path() === 'resources' ? "is-active" : "" }}">
+                Resources
+            </a>
 
-                <div class="navbar-dropdown">
-                    <a href="/brochures"
-                            class="navbar-item {{ Request::path() === 'brochures' ? "is-active" : "" }}" >
-                        Brochures
-                    </a>
-                    <a href="/leaflets"
-                            class="navbar-item {{ Request::path() === 'leaflets' ? "is-active" : "" }}">
-                        Leaflets
-                    </a>
-                    <a href="/rollUps"
-                            class="navbar-item {{ Request::path() === 'rollUps' ? "is-active" : "" }}">
-                        Roll-ups
-                    </a>
-                    <a href="/posters"
-                            class="navbar-item {{ Request::path() === 'posters' ? "is-active" : "" }}">
-                        Posters
-                    </a>
-                    <a href="/videos"
-                            class="navbar-item {{ Request::path() === 'videos' ? "is-active" : "" }}">
-                        Videos
-                    </a>
-                </div>
-            </div>
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     Socials
