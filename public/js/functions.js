@@ -31,6 +31,7 @@ window.addEventListener('load', function() {
         $(".Roll-up").show();
         $(".Poster").show();
         $(".Video").show();
+        $(".Pictures-for-agencies").show();
 
         $('#All').addClass("is-info");
         $('#Leaflets').removeClass("is-info");
@@ -38,6 +39,7 @@ window.addEventListener('load', function() {
         $('#Posters').removeClass("is-info");
         $('#Videos').removeClass("is-info");
         $('#Brochures').removeClass("is-info");
+        $("#Pictures-for-agencies").removeClass("is-info");
     });
 
     $('#Brochures').click(function() {
@@ -46,6 +48,7 @@ window.addEventListener('load', function() {
         $(".Roll-up").hide();
         $(".Poster").hide();
         $(".Video").hide();
+        $(".Pictures-for-agencies").hide();
 
         $('#All').removeClass("is-info");
         $('#Leaflets').removeClass("is-info");
@@ -53,6 +56,7 @@ window.addEventListener('load', function() {
         $('#Posters').removeClass("is-info");
         $('#Videos').removeClass("is-info");
         $('#Brochures').addClass("is-info");
+        $("#Pictures-for-agencies").removeClass("is-info");
     });
 
     $('#Leaflets').click(function() {
@@ -61,6 +65,7 @@ window.addEventListener('load', function() {
         $(".Roll-up").hide();
         $(".Poster").hide();
         $(".Video").hide();
+        $(".Pictures-for-agencies").hide();
 
         $('#All').removeClass("is-info");
         $('#Leaflets').addClass("is-info");
@@ -68,6 +73,7 @@ window.addEventListener('load', function() {
         $('#Posters').removeClass("is-info");
         $('#Videos').removeClass("is-info");
         $('#Brochures').removeClass("is-info");
+        $("#Pictures-for-agencies").removeClass("is-info");
     });
 
     $('#Roll-ups').click(function() {
@@ -76,6 +82,7 @@ window.addEventListener('load', function() {
         $(".Roll-up").show();
         $(".Poster").hide();
         $(".Video").hide();
+        $(".Pictures-for-agencies").hide();
 
         $('#All').removeClass("is-info");
         $('#Leaflets').removeClass("is-info");
@@ -83,6 +90,7 @@ window.addEventListener('load', function() {
         $('#Posters').removeClass("is-info");
         $('#Videos').removeClass("is-info");
         $('#Brochures').removeClass("is-info");
+        $("#Pictures-for-agencies").removeClass("is-info");
     });
 
     $('#Posters').click(function() {
@@ -91,6 +99,7 @@ window.addEventListener('load', function() {
         $(".Roll-up").hide();
         $(".Poster").show();
         $(".Video").hide();
+        $(".Pictures-for-agencies").hide();
 
         $('#All').removeClass("is-info");
         $('#Leaflets').removeClass("is-info");
@@ -98,6 +107,7 @@ window.addEventListener('load', function() {
         $('#Posters').addClass("is-info");
         $('#Videos').removeClass("is-info");
         $('#Brochures').removeClass("is-info");
+        $("#Pictures-for-agencies").removeClass("is-info");
     });
 
     $('#Videos').click(function() {
@@ -106,6 +116,7 @@ window.addEventListener('load', function() {
         $(".Roll-up").hide();
         $(".Poster").hide();
         $(".Video").show();
+        $(".Pictures-for-agencies").hide();
 
         $('#All').removeClass("is-info");
         $('#Leaflets').removeClass("is-info");
@@ -113,6 +124,24 @@ window.addEventListener('load', function() {
         $('#Posters').removeClass("is-info");
         $('#Videos').addClass("is-info");
         $('#Brochures').removeClass("is-info");
+        $("#Pictures-for-agencies").removeClass("is-info");
+    });
+
+    $('#Pictures-for-agencies').click(function() {
+        $(".Brochure").hide();
+        $(".Leaflet").hide();
+        $(".Roll-up").hide();
+        $(".Poster").hide();
+        $(".Video").hide();
+        $(".Pictures-for-agencies").show();
+
+        $('#All').removeClass("is-info");
+        $('#Leaflets').removeClass("is-info");
+        $('#Roll-ups').removeClass("is-info");
+        $('#Posters').removeClass("is-info");
+        $('#Videos').removeClass("is-info");
+        $('#Brochures').removeClass("is-info");
+        $("#Pictures-for-agencies").addClass("is-info");
     });
 
     var zoom = 1;

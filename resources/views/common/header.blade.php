@@ -1,7 +1,7 @@
 <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-            <b>HZ</b>
+        <a class="navbar-item" onclick="window.location.href='/'">
+            <b>HZ International Agents Portal</b>
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -21,23 +21,6 @@
                 Resources
             </a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    Socials
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        Facebook
-                    </a>
-                    <a class="navbar-item">
-                        Twitter
-                    </a>
-                    <a class="navbar-item">
-                        LinkedIn
-                    </a>
-                </div>
-            </div>
             <a href = "/howToApply" class="navbar-item {{ Request::path() === 'howToApply' ? "is-active" : "" }}">
                 How to apply?
             </a>
@@ -51,6 +34,11 @@
                     </a>
                     <a class="button is-light">
                         Log in
+                    </a>
+                    <a href="https://www.facebook.com/HZUniversityofAppliedSciences" target="_blank" class="button is-medium is-facebook">
+                        <span class="icon">
+                          <i class="fab fa-facebook fa-lg"></i>
+                        </span>
                     </a>
                 </div>
             </div>

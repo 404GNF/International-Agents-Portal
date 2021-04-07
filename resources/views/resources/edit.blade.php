@@ -34,6 +34,7 @@
                                 <option value="Leaflet" {{ $resource->tag == 'Leaflet' ? 'selected' : '' }}>Leaflet</option>
                                 <option value="Roll-up" {{ $resource->tag == 'Roll-up' ? 'selected' : '' }}>Roll-up</option>
                                 <option value="Poster" {{ $resource->tag == 'Poster' ? 'selected' : '' }}>Poster</option>
+                                <option value="Pictures-for-agencies" {{ $resource->tag == 'Pictures-for-agencies' ? 'selected' : '' }}>Pictures for agencies</option>
                                 <option value="Video" {{ $resource->tag == 'Video' ? 'selected' : '' }}>Video</option>
                                 </select>
                             </div>

@@ -20,6 +20,7 @@
             <button id="Leaflets" class="button">Leaflets</button>
             <button id="Roll-ups" class="button">Roll-ups</button>
             <button id="Posters" class="button">Posters</button>
+            <button id="Pictures-for-agencies" class="button">Pictures for agencies</button>
             <button id="Videos" class="button">Videos</button>
         </div>
 

@@ -36,6 +36,7 @@
                             <option value="Leaflet">Leaflet</option>
                             <option value="Roll-up">Roll-up</option>
                             <option value="Poster">Poster</option>
+                            <option value="Pictures-for-agencies">Pictures for agencies</option>
                             <option value="Video">Video</option>
                             </select>
                         </div>
