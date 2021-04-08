@@ -5,14 +5,14 @@ namespace Database\Factories;
 use App\Models\Brochure;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BrochureFactory extends Factory
+class ResourceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Brochure::class;
+    protected $model = Resource::class;
 
     /**
      * Define the model's default state.

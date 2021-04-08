@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrochuresTable extends Migration
+class CreateResourcesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateBrochuresTable extends Migration
      */
     public function up()
     {
-        Schema::create('brochures', function (Blueprint $table) {
+        Schema::create('resources', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('tag');
             $table->boolean('visibility')->default(true);
+            $table->boolean('missingImage')->default(true);
+            $table->string('image_path');
+            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateBrochuresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brochures');
+        Schema::dropIfExists('resources');
     }
 }

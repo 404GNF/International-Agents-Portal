@@ -6,11 +6,11 @@
         <div class="card"> {{-- The form is placed inside a Bulma Card component --}}
             <header class="card-header">
                 <p class="card-header-title"> {{-- The Card header content --}}
-                    Add Brochure
+                    Add Resource
                 </p>
             </header>
 
-            <form method="POST" action="/brochures" enctype="multipart/form-data">
+            <form method="POST" action="/resources" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card-content">
@@ -19,7 +19,7 @@
                         {{-- Here are all the form fields --}}
                         <div class="field">
 
-                                <label class="label" for="title">Image Title</label>
+                                <label class="label" for="title">Resource Title</label>
                                 <div class="control">
                                     <input id="file-input" name="title" class="input @error('title') is-danger @enderror"
                                         type="text">
@@ -29,7 +29,19 @@
                                 @enderror
                         </div>
 
-                        <div class="field">
+
+                        <div class="field select is-primary">
+                            <select name="tag" id="tag">
+                            <option value="Brochure">Brochure</option>
+                            <option value="Leaflet">Leaflet</option>
+                            <option value="Roll-up">Roll-up</option>
+                            <option value="Poster">Poster</option>
+                            <option value="Pictures-for-agencies">Pictures for agencies</option>
+                            <option value="Video">Video</option>
+                            </select>
+                        </div>
+
+                        <div class="field" id="upload">
                             
                                 <div class="file has-name">
                                     <label class="file-label">
@@ -50,12 +62,17 @@
                         </div>
                     </div>
 
+                    <div class="field" id="inCaseVideo" style="display: none;">
+                        <input name="video" class="input is-link" type="text" placeholder="YouTube Link">
+                    </div>
+
                     <div class="field is-grouped">
                         <div class="control">
                             <input type="submit" class="button is-primary" value="Submit">
                         </div>
-                        <div class="button" onclick="window.location.href='/brochures/'">Cancel</div>
+                        <div class="button" onclick="window.location.href='/resources/'">Cancel</div>
                     </div>
+
             </form>     
             
         </div>
