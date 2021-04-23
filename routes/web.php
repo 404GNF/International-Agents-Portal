@@ -29,3 +29,6 @@ Route::resource('/resources', ResourceController::class);
 
 Route::view('/howToApply', 'apply');
 
+Route::get('/a-page-crashing-the-server', function(){
+    return abort(500);
+});
