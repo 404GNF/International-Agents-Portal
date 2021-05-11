@@ -25,23 +25,5 @@
                 How to apply?
             </a>
         </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary" style="background: #ffb380">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
-                    </a>
-                    <a href="https://www.facebook.com/HZUniversityofAppliedSciences" target="_blank" class="button is-medium is-facebook">
-                        <span class="icon">
-                          <i class="fab fa-facebook fa-lg"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
 </nav>
