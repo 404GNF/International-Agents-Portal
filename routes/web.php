@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +18,17 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/a-page-crashing-the-server', function(){
+    return abort(500);
+});
+
+Route::get('/resources', [ItemController::class, 'index']);
+
+Route::get('/how-to-apply', function() {
+    return view('apply');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-//brochure route
-Route::resource('/resources', ResourceController::class);
-
-Route::view('/howToApply', 'apply');
-
-Route::get('/a-page-crashing-the-server', function(){
-    return abort(500);
-});

@@ -1,68 +1,54 @@
-@extends('common.welcome')
+@extends('common.template')
 
 @section('content')
-    <section class="hero  is-medium  is-bold is-link">
+    <section class="hero is-medium is-bold is-link">
         <div class="hero-body" style="
             background: url('https://www.hz.nl/imager/uploads/images/3.-Werk-en-studie/Headers/docent-coacht-studenten-003_c8fa470484be7b69be5daae77a1602c5.jpg') no-repeat center center;
             background-size: cover;"
         >
             <div class="container">
                 <p class="title is-2">Resources</p>
-                <div onclick="window.location.href='/resources/create'" class="button is-primary">Add New Resource</div>
+                <div onclick="window.location.href='/admin/resources'" class="button is-primary">Manage Resources</div>
+                <div onclick="window.location.href='/admin/videos'" class="button is-primary">Manage Videos</div>
+                <div onclick="window.location.href='/admin/categories'" class="button is-primary">Manage Categories</div>
             </div>
         </div>
     </section>
 
     <div class="container bodycontainer">
         <div class="buttons filtergroup">
-            <button id="All" class="button is-info">All</button>
-            <button id="Brochures" class="button">Brochures</button>
-            <button id="Leaflets" class="button">Leaflets</button>
-            <button id="Roll-ups" class="button">Roll-ups</button>
-            <button id="Posters" class="button">Posters</button>
-            <button id="Pictures-for-agencies" class="button">Pictures for agencies</button>
-            <button id="Videos" class="button">Videos</button>
+            <button id="All" class="button filterbutton is-info">All</button>
+            @foreach ($categories as $category)
+                <button id="{{ str_replace(' ','-', $category->name) }}" class="button filterbutton">{{ $category->name }}</button>
+            @endforeach
         </div>
 
         <div class="columns is-multiline">
-        @foreach($resources as $resource)
-            <div class="column is-one-third {{ $resource->tag }}">
-                <h2 class="title is-4"><span>{{ $resource->title }}</span></h2>
+        @foreach($items as $item)
+            <div class="column is-one-third @isset ($item->category->name){{ str_replace(' ','-', $item->category->name) }}@else 'Undefined' @endisset">
+                <h2 class="title is-4"><span>{{ $item->title }}</span></h2>
 
-                @if($resource->missingImage == false)
-                <figure class="field image is-1by1 imagefigure">
-                    <img class="thumbnails" src="{{ asset('storage') . "/resources/" . $resource->image_path }}" alt="{{ $resource->title }}">
-                    <div class="tags"><span class="tag is-info">{{ $resource->tag }}</span></div>
-                </figure>
-                @endif
-
-                @if(isset($resource->video_url))
+                @isset($item->youtube_url)
                 <figure class="field image is-1by1">
-                    <iframe class="has-ratio" width="440" height="750" src="https://www.youtube.com/embed/{{ $resource->video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="tags"><span class="tag is-info">{{ $resource->tag }}</span></div>
+                    <iframe class="has-ratio" width="440" height="750" src="https://www.youtube.com/embed/{{ explode("=", $item->youtube_url)[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="tags"><span class="tag is-info">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span></div>
                 </figure>
-                @endif
+                @else
+                <figure class="field image is-1by1 imagefigure">
+                    <img class="thumbnails" src="{{ $item->thumbnail }}" alt="{{ $item->title }}">
+                    <div class="tags"><span class="tag is-info">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span></div>
+                </figure>
+                @endisset
 
-                <form class = "form" method="POST" action="/resources/{{ $resource->id }}">
-                    @csrf
-                    @method('DELETE')
+                <div class="field is-grouped icons-under-image">
+                    @empty($item->youtube_url)
+                    <a href="{{ explode('"', $item->file)[3] }}" download class="button downloadbutton is-info download"><i class="fas fa-download"></i></a>
+                    @endempty
+                </div>
 
-                    <div class="field is-grouped icons-under-image">
-                        @if($resource->video_url == null)
-                        <a href="{{ asset('storage') . "/resources/" . $resource->image_path }}" download class="button is-info download"><i class="fas fa-download"></i></a>
-                        @endif
-
-                        @if($resource->video_url)
-                        <a target="_blank" href="http://i3.ytimg.com/vi/{{ $resource->video_url }}/maxresdefault.jpg" download class="button is-info download"><i class="fas fa-download"></i></a>
-                        @endif
-
-                        <a class="button is-warning edit" href = "/resources/{{$resource->id}}/edit"><i class="fas fa-edit"></i></a>
-                        <button onclick="return confirm('Are you sure?')" class="button is-danger remove" type="submit"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </form>
             </div>
 
-            @if($resource->video_url == null)
+            @empty($item->youtube_url)
             <div class="modal">
                 <div class="modal-background"></div>
                 <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
@@ -70,12 +56,12 @@
                 <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
                 <div class="modal-content box target">
                     <p class="image">
-                        <a href="{{ asset('storage') . "/resources/" . $resource->image_path }}" download><img class="selected-image" src="{{ asset('storage') . "/resources/" . $resource->image_path }}" alt="{{ $resource->title }}"></a>
+                        <img class="selected-image" src="{{ $item->thumbnail }}" alt="{{ $item->title }}">
                     </p>
                 </div>
                 <button id="close" class="modal-close is-large" aria-label="close"></button>
             </div>
-            @endif
+            @endempty
 
         @endforeach
         </div>

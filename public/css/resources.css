@@ -112,3 +112,7 @@ figure {
   bottom: 10px;
   right: 3.5px;
 }
+
+.downloadbutton {
+  margin: 0 auto;
+}

@@ -1,4 +1,4 @@
-@extends('common.welcome')
+@extends('common.template')
 
 @section('content')
     <section class="hero  is-medium  is-bold is-link">
