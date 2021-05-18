@@ -15,8 +15,9 @@ class ItemController extends Controller
         $resources = Resource::get();
         $videos = Video::get();
 
-        $items = $resources->merge($videos);
+        $items = $videos->concat($resources);
 
-        return view('resources.index')->with(compact('categories', 'items')); 
+        
+       return view('resources.index')->with(compact('categories', 'items')); 
     }
 }
