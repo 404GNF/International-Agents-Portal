@@ -1,5 +1,4 @@
 @extends('common.template')
-
 @section('content')
     <section class="hero is-medium is-bold is-link">
         <div class="hero-body" style="
@@ -66,6 +65,4 @@
         @endforeach
         </div>
     </div>
-    
-
 @endsection
