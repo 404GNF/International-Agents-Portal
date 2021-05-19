@@ -24,6 +24,11 @@
             <a href = "/how-to-apply" class="navbar-item {{ Request::path() === 'how-to-apply' ? "is-active" : "" }}">
                 How to apply?
             </a>
+            @if (Auth::guest())
+                <div onclick="window.location.href='/admin'" class="button is-success menulogin">Login</div>
+            @else
+                <div onclick="window.location.href='/logout'" class="button is-danger menulogin">Logout</div>
+            @endif
         </div>
     </div>
 </nav>

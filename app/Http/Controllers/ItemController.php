@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Resource;
 use App\Video;
+use App\Models\User;
 
 class ItemController extends Controller
 {
     public function index() {
+        $user = Category::get();
+
         $categories = Category::get();
 
         $resources = Resource::get();
@@ -17,6 +20,6 @@ class ItemController extends Controller
 
         $items = $resources->concat($videos);
 
-        return view('resources.index')->with(compact('categories', 'items'));
+        return view('resources.index')->with(compact('categories', 'items', 'user'));
     }
 }

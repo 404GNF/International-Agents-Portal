@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\FunctionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('/resources', [ItemController::class, 'index']);
 Route::get('/how-to-apply', function() {
     return view('apply');
 });
+
+Route::get('/logout', [FunctionsController::class, 'logout']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
