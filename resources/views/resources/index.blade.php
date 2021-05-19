@@ -1,5 +1,4 @@
 @extends('common.template')
-
 @section('content')
     <section class="hero is-medium is-bold is-link">
         <div class="hero-body" style="
@@ -35,7 +34,7 @@
                 </figure>
                 @else
                 <figure class="field image is-1by1 imagefigure">
-                    <img class="thumbnails" src="{{ $item->thumbnail }}" alt="{{ $item->title }}">
+                    <img class="thumbnails" src="storage\{{ $item->thumbnail }}" alt="{{ $item->title }}">
                     <div class="tags"><span class="tag is-info">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span></div>
                 </figure>
                 @endisset
@@ -56,7 +55,7 @@
                 <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
                 <div class="modal-content box target">
                     <p class="image">
-                        <img class="selected-image" src="{{ $item->thumbnail }}" alt="{{ $item->title }}">
+                        <img class="selected-image" src="storage\{{ $item->thumbnail }}" alt="{{ $item->title }}">
                     </p>
                 </div>
                 <button id="close" class="modal-close is-large" aria-label="close"></button>
@@ -66,6 +65,4 @@
         @endforeach
         </div>
     </div>
-    
-
 @endsection
