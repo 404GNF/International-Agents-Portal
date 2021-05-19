@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="4a190d99-4b23-4d6f-9573-307f5ba2a0bc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
@@ -155,90 +128,10 @@
       <path value="$PROJECT_DIR$/vendor/orangehill/iseed" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1qYzTUYXwpFnIBpMhhC92Gey6LH" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\code\International-Agents-Portal\resources\views\resources\rollUps" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="4a190d99-4b23-4d6f-9573-307f5ba2a0bc" name="Default Changelist" comment="" />
-      <created>1617271318760</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1617271318760</updated>
-      <workItem from="1617271320873" duration="2283000" />
-      <workItem from="1617351483087" duration="619000" />
-      <workItem from="1617352425007" duration="1408000" />
-      <workItem from="1617353881594" duration="8250000" />
-      <workItem from="1617455119692" duration="2065000" />
-      <workItem from="1617621852570" duration="144000" />
-      <workItem from="1617622009176" duration="2600000" />
-      <workItem from="1617731040257" duration="602000" />
-      <workItem from="1617780060951" duration="3686000" />
-      <workItem from="1618557503462" duration="89000" />
-      <workItem from="1618742125658" duration="885000" />
-      <workItem from="1620719477821" duration="1598000" />
-      <workItem from="1620737460217" duration="33000" />
-      <workItem from="1621240678549" duration="332000" />
-      <workItem from="1621352139806" duration="10888000" />
-      <workItem from="1621426153741" duration="673000" />
-      <workItem from="1621426830009" duration="8565000" />
-      <workItem from="1621438964074" duration="405000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="Melvin" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
   </component>
 </project>
