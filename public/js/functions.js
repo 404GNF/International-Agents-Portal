@@ -98,10 +98,10 @@ window.addEventListener('load', function() {
         });
     };
 
-    //All the elements with the class 'tag'
-    let toCheck = document.querySelectorAll('.tag');
+    //All the elements with the class 'notification'
+    let toCheck = document.querySelectorAll('.notification');
 
-    //If the innerHTML of the elements with the class 'tag' are 'Undefined' run the check function
+    //If the innerHTML of the elements with the class 'notification' are 'Undefined' run the check function
     for (let i = 0; i < toCheck.length; i++) {
         if (toCheck[i].innerHTML == " Undefined ") {
             check();

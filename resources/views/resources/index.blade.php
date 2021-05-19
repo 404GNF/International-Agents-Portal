@@ -7,9 +7,11 @@
         >
             <div class="container">
                 <p class="title is-2">Resources</p>
-                <div onclick="window.location.href='/admin/resources'" class="button is-primary">Manage Resources</div>
-                <div onclick="window.location.href='/admin/videos'" class="button is-primary">Manage Videos</div>
-                <div onclick="window.location.href='/admin/categories'" class="button is-primary">Manage Categories</div>
+                @if($user = Auth::user())
+                    <div onclick="window.location.href='/admin/resources'" class="button is-primary">Manage Resources</div>
+                    <div onclick="window.location.href='/admin/videos'" class="button is-primary">Manage Videos</div>
+                    <div onclick="window.location.href='/admin/categories'" class="button is-primary">Manage Categories</div>
+                @endif
             </div>
         </div>
     </section>
@@ -30,12 +32,24 @@
                 @isset($item->youtube_url)
                 <figure class="field image is-1by1">
                     <iframe class="has-ratio" width="440" height="750" src="https://www.youtube.com/embed/{{ explode("=", $item->youtube_url)[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="tags"><span class="tag is-info">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span></div>
+                    <div class="tags">
+                        <span class="tag is-info
+                            @if($user = Auth::user())
+                                notification
+                            @endif
+                        ">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span>
+                    </div>
                 </figure>
                 @else
                 <figure class="field image is-1by1 imagefigure">
                     <img class="thumbnails" src="storage\{{ $item->thumbnail }}" alt="{{ $item->title }}">
-                    <div class="tags"><span class="tag is-info">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span></div>
+                    <div class="tags">
+                        <span class="tag is-info
+                            @if($user = Auth::user())
+                                notification
+                            @endif
+                        ">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span>
+                    </div>
                 </figure>
                 @endisset
 
