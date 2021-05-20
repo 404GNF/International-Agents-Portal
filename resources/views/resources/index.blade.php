@@ -56,7 +56,7 @@
 
                         <div class="field is-grouped icons-under-image">
                             @empty($item->youtube_url)
-                            <a href="{{ explode('"', $item->file)[3] }}" download class="button downloadbutton is-info download"><i class="fas fa-download"></i></a>
+                            <a href="{{ "storage/" . explode('"', $item->file)[3] }}" download class="button downloadbutton is-info download"><i class="fas fa-download"></i></a>
                             @endempty
                         </div>
 
