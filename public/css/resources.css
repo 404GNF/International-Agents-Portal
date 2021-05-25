@@ -41,7 +41,11 @@ img {
 }
 
 figure {
-  height: 430px;
+  height: auto;
+}
+
+.ytb-thumbnail {
+    width: 20vw;
 }
 
 .imagefigure {

@@ -1,6 +1,7 @@
 window.addEventListener('load', function() {
     //taking all the thumbnails from the page
     let images = document.querySelectorAll('.thumbnails');
+    console.log(images);
 
     //opening and closing modals
     let modals = document.querySelectorAll('.modal');
