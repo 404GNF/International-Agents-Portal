@@ -78,7 +78,7 @@
                             <article class="media">
                                 <figure class="media-left">
                                    <p class="image is-128x128 is-square">
-                                        <img class="thumbnails" src="https://img.youtube.com/vi/{{ explode("=", $item->youtube_url)[1] }}/hqdefault.jpg" alt="video thumbnail">
+                                        <img class="thumbnails" src="https://img.youtube.com/vi/{{ explode("=", $item->youtube_url)[1] }}/hqdefault.jpg" alt="video thumbnail" >
                                    </p>
                                 </figure>
                                 <div class="media-content">
@@ -90,15 +90,31 @@
                             </article>
                         @else
                             <article class="media">
-                                <figure class="media-left">
-                                   <p class="image is-128x128 is-square">
-                                        <img class="thumbnails" src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}" style="object-fit: cover">
+                                <figure class="media-left" >
+                                    <p class="image is-128x128 is-square">
+                                        <img class="" src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}" style="object-fit: cover; cursor: default;">
                                     </p>
                                 </figure>
                                 <div class="media-content">
                                     <div class="content">
                                         <p class="title ">{{ $item->title }}</p>
                                         <p class="subtitle is-6">Description</p>
+                                            @empty($item->youtube_url)
+                                                <div class="columns px-3">
+                                                    <a href="{{ "storage/" . explode('"', $item->file)[3] }}" download class="button is-orange is-small is-fullwidth column mr-2">
+                                                        <span class="pr-2">
+                                                            <i class="fas fa-download"></i>
+                                                        </span>
+                                                        <span>Download</span>
+                                                    </a>
+                                                    <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
+                                                        <span class="pr-2">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
+                                                        <span>Preview</span>
+                                                    </a>
+                                                </div> 
+                                            @endempty
                                     </div>
                                 </div>
                             </article>
@@ -150,22 +166,24 @@
                         {{-- </div> --}}
 
 
-                        
-                    @empty($item->youtube_url)
+                    {{-- @empty($item->youtube_url) --}}
                     <div class="modal">
                         <div class="modal-background"></div>
                         <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
                         <a class="btn zoom-out"><i class="fas fa-search-minus"></i></a>
                         <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
-                        <div class="modal-content box target">
-                            <p class="image">
+                        <div class="box" >
+                            <p class="image" style="width: 75vw; height: 80vh;">
+                                @isset($item->file)
+                                <embed src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}" width="100%" height="100%" />
+                                @else
                                 <img class="selected-image" src="storage\{{ $item->thumbnail }}" alt="{{ $item->title }}">
+                                @endisset
                             </p>
                         </div>
                         <button id="close" class="modal-close is-large" aria-label="close"></button>
                     </div>
-                    @endempty
-
+                    {{-- @endempty --}}
                     @endforeach
             @else
                 <span class="empty">No resources are added...</span>
