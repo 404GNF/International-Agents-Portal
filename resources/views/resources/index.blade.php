@@ -78,13 +78,27 @@
                             <article class="media">
                                 <figure class="media-left">
                                    <p class="image is-128x128 is-square">
-                                        <img class="thumbnails" src="https://img.youtube.com/vi/{{ explode("=", $item->youtube_url)[1] }}/hqdefault.jpg" alt="video thumbnail" >
+                                        <img src="https://img.youtube.com/vi/{{ explode("=", $item->youtube_url)[1] }}/hqdefault.jpg" alt="video thumbnail" style="cursor: default;">
                                    </p>
                                 </figure>
                                 <div class="media-content">
                                     <div class="content">
                                         <p class="title ">{{ $item->title }}</p>
                                         <p class="subtitle is-6">Description</p>
+                                            <div class="columns px-3">
+                                                <a href="{{ $item->youtube_url }}" target="blank" class="button is-orange is-small is-fullwidth column mr-2">
+                                                    <span class="pr-2">
+                                                        <i class="fas fa-share-square"></i>
+                                                    </span>
+                                                    <span>Open</span>
+                                                </a>
+                                                <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
+                                                    <span class="pr-2">
+                                                        <i class="fas fa-eye"></i>
+                                                    </span>
+                                                    <span>Preview</span>
+                                                </a>
+                                            </div> 
                                     </div>
                                 </div>
                             </article>
@@ -92,7 +106,7 @@
                             <article class="media">
                                 <figure class="media-left" >
                                     <p class="image is-128x128 is-square">
-                                        <img class="" src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}" style="object-fit: cover; cursor: default;">
+                                        <img src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}" style="object-fit: cover; cursor: default;">
                                     </p>
                                 </figure>
                                 <div class="media-content">
@@ -174,11 +188,15 @@
                         <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
                         <div class="box" >
                             <p class="image" style="width: 75vw; height: 80vh;">
+                            @isset($item->youtube_url)
+                                <iframe class="has-ratio" width="100%" height="100%" src="https://www.youtube.com/embed/{{ explode("=", $item->youtube_url)[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            @else
                                 @isset($item->file)
                                 <embed src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}" width="100%" height="100%" />
                                 @else
                                 <img class="selected-image" src="storage\{{ $item->thumbnail }}" alt="{{ $item->title }}">
                                 @endisset
+                            @endisset
                             </p>
                         </div>
                         <button id="close" class="modal-close is-large" aria-label="close"></button>
