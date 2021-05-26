@@ -1,12 +1,13 @@
 @extends('common.template')
 @section('content')
+    
+    <!-- 1st section of the page: shows the title + buttons if the user is an administrator -->
     <section class="hero is-medium is-bold is-link">
-        <div class="hero-body" style="
-            background: url('https://www.hz.nl/imager/uploads/images/3.-Werk-en-studie/Headers/docent-coacht-studenten-003_c8fa470484be7b69be5daae77a1602c5.jpg') no-repeat center center;
-            background-size: cover;"
-        >
+        <div class="hero-body" style="background-size: cover;">
             <div class="container">
                 <p class="title is-2">Resources</p>
+
+                <!-- Add buttons (shortcuts) for the administrator user -->
                 @if($user = Auth::user())
                     <div onclick="window.location.href='/admin/resources'" class="button is-primary">Manage Resources</div>
                     <div onclick="window.location.href='/admin/videos'" class="button is-primary">Manage Videos</div>
@@ -29,11 +30,13 @@
                         <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
                     </p>
                 </div>
+                <!-- Filter options -->
                 <div class="container">
                     <div>
                         <p class="title is-5">Filter</p>
                     </div>
                     <hr>
+                    <!-- Select a category -->
                     <div class="pb-3">
                         <p class="pb-2">Category</p>
                         <button id="All" class="button filterbutton is-info is-small mb-1">All</button>
@@ -41,6 +44,7 @@
                             <button id="{{ str_replace(' ','-', $category->name) }}" class="button filterbutton is-small mb-1">{{ $category->name }}</button>
                         @endforeach
                     </div>
+                    <!-- Sort and filter -->
                     <div>
                         <p class="pb-2">File Type</p>
                         <div class="select is-fullwidth is-small mb-4">
@@ -69,29 +73,73 @@
             <!-- Index/show section -->
             <div class="container" >
 
+
+            <!-- Checks if there are items to display -->
             @if(!$items->isEmpty())
 
+                    <!-- Loop through every item -->
                     @foreach($items as $item)
 
+                        <!-- Card/box for 1 item; Adds a class name when user filter categories -->
                         <div class="is-full box is-one-third @isset ($item->category->name){{ str_replace(' ','-', $item->category->name) }}@else 'Undefined' @endisset">
                         @isset($item->youtube_url)
                             <article class="media">
+                                <!-- Thumbnail -->
                                 <figure class="media-left">
                                    <p class="image is-128x128 is-square">
                                         <img src="https://img.youtube.com/vi/{{ explode("=", $item->youtube_url)[1] }}/hqdefault.jpg" alt="video thumbnail" style="cursor: default;">
                                    </p>
                                 </figure>
+                                <!-- Body of the card/box -->
                                 <div class="media-content">
                                     <div class="content">
                                         <p class="title ">{{ $item->title }}</p>
                                         <p class="subtitle is-6">Description</p>
+                                        <!-- Action buttons -->
+                                        <div class="columns px-3">
+                                            <!-- Open (in a new tab) button -->
+                                            <a href="{{ $item->youtube_url }}" target="blank" class="button is-orange is-small is-fullwidth column mr-2">
+                                                <span class="pr-2">
+                                                    <i class="fas fa-share-square"></i>
+                                                </span>
+                                                <span>Open</span>
+                                            </a>
+                                            <!-- Preview button -->
+                                            <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
+                                                <span class="pr-2">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                                <span>Preview</span>
+                                            </a>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </article>
+                        @else
+                            <article class="media">
+                                <!-- Thumbnail -->
+                                <figure class="media-left" >
+                                    <p class="image is-128x128 is-square">
+                                        <img src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}" style="object-fit: cover; cursor: default;">
+                                    </p>
+                                </figure>
+                                <!-- Body of the card/box -->
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p class="title ">{{ $item->title }}</p>
+                                        <p class="subtitle is-6">Description</p>
+                                        <!-- Makes sure the item is not a youtube video -->
+                                        @empty($item->youtube_url)
+                                            <!-- Action buttons -->
                                             <div class="columns px-3">
-                                                <a href="{{ $item->youtube_url }}" target="blank" class="button is-orange is-small is-fullwidth column mr-2">
+                                                <!-- Download button -->
+                                                <a href="{{ "storage/" . explode('"', $item->file)[3] }}" download class="button is-orange is-small is-fullwidth column mr-2">
                                                     <span class="pr-2">
-                                                        <i class="fas fa-share-square"></i>
+                                                        <i class="fas fa-download"></i>
                                                     </span>
-                                                    <span>Open</span>
+                                                    <span>Download</span>
                                                 </a>
+                                                <!-- Preview button -->
                                                 <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
                                                     <span class="pr-2">
                                                         <i class="fas fa-eye"></i>
@@ -99,88 +147,18 @@
                                                     <span>Preview</span>
                                                 </a>
                                             </div> 
-                                    </div>
-                                </div>
-                            </article>
-                        @else
-                            <article class="media">
-                                <figure class="media-left" >
-                                    <p class="image is-128x128 is-square">
-                                        <img src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}" style="object-fit: cover; cursor: default;">
-                                    </p>
-                                </figure>
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p class="title ">{{ $item->title }}</p>
-                                        <p class="subtitle is-6">Description</p>
-                                            @empty($item->youtube_url)
-                                                <div class="columns px-3">
-                                                    <a href="{{ "storage/" . explode('"', $item->file)[3] }}" download class="button is-orange is-small is-fullwidth column mr-2">
-                                                        <span class="pr-2">
-                                                            <i class="fas fa-download"></i>
-                                                        </span>
-                                                        <span>Download</span>
-                                                    </a>
-                                                    <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
-                                                        <span class="pr-2">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                        <span>Preview</span>
-                                                    </a>
-                                                </div> 
-                                            @endempty
+                                        @endempty
                                     </div>
                                 </div>
                             </article>
                         @endisset
                         </div>
 
-                    {{-- <div class="container" style="max-height: 200px;"> --}}
-                    {{-- </div> --}}
-                        {{-- <div class="column is-half"> --}}
-                            {{-- <figure class="image is-square"> --}}
-                                {{-- <img class="thumbnails" src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}" > --}}
-                            {{-- </figure> --}}
-                            {{-- <h2 class="title is-4"><span>{{ $item->title . "jflksdjfalksdjf"}}</span></h2> --}}
-                        {{-- </div> --}}
-                    
-                        {{-- <div class="column is-one-third @isset ($item->category->name){{ str_replace(' ','-', $item->category->name) }}@else 'Undefined' @endisset"> --}}
-                            {{-- <h2 class="title is-4"><span>{{ $item->title }}</span></h2> --}}
 
-                            {{-- @isset($item->youtube_url) --}}
-                            {{-- <figure class="field image is-1by1"> --}}
-                                {{-- <iframe class="has-ratio" width="440" height="750" src="https://www.youtube.com/embed/{{ explode("=", $item->youtube_url)[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
-                                {{-- <div class="tags"> --}}
-                                    {{-- <span class="tag is-info --}}
-                                        {{-- @if($user = Auth::user()) --}}
-                                            {{-- notification --}}
-                                        {{-- @endif --}}
-                                    {{-- ">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span> --}}
-                                {{-- </div> --}}
-                            {{-- </figure> --}}
-                            {{-- @else --}}
-                            {{-- <figure class="field image is-1by1 imagefigure"> --}}
-                                {{-- <img class="thumbnails" src="storage\{{ $item->thumbnail }}" alt="{{ $item->title }}"> --}}
-                                {{-- <div class="tags"> --}}
-                                    {{-- <span class="tag is-info --}}
-                                        {{-- @if($user = Auth::user()) --}}
-                                            {{-- notification --}}
-                                        {{-- @endif --}}
-                                    {{-- ">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span> --}}
-                                {{-- </div> --}}
-                            {{-- </figure> --}}
-                            {{-- @endisset --}}
-
-                            {{-- <div class="field is-grouped icons-under-image"> --}}
-                                {{-- @empty($item->youtube_url) --}}
-                                {{-- <a href="{{ "storage/" . explode('"', $item->file)[3] }}" download class="button downloadbutton is-info download"><i class="fas fa-download"></i></a> --}}
-                                {{-- @endempty --}}
-                            {{-- </div> --}}
-
-                        {{-- </div> --}}
-
-
-                    {{-- @empty($item->youtube_url) --}}
+                    <!-- HTML to show an item's content;
+                        Modal is called when the user click on a "preview" button;
+                        Needs ./public/js/function.js to work properly;
+                    -->
                     <div class="modal">
                         <div class="modal-background"></div>
                         <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
@@ -188,6 +166,7 @@
                         <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
                         <div class="box" >
                             <p class="image" style="width: 75vw; height: 80vh;">
+                            <!-- Checks if a video, file or images should be displayed -->
                             @isset($item->youtube_url)
                                 <iframe class="has-ratio" width="100%" height="100%" src="https://www.youtube.com/embed/{{ explode("=", $item->youtube_url)[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             @else
@@ -201,9 +180,10 @@
                         </div>
                         <button id="close" class="modal-close is-large" aria-label="close"></button>
                     </div>
-                    {{-- @endempty --}}
+
                     @endforeach
             @else
+                <!-- Displays a message when there is 0 item to show -->
                 <span class="empty">No resources are added...</span>
             @endif
         </div>
