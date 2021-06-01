@@ -35,7 +35,7 @@
                 </figure>
                 @else
                 <figure class="field image is-1by1 imagefigure">
-                    <img class="thumbnails" src="{{ $item->thumbnail }}" alt="{{ $item->title }}">
+                    <img class="thumbnails" src="storage\{{ $item->thumbnail }}" alt="{{ $item->title }}">
                     <div class="tags"><span class="tag is-info">@isset ($item->category->name){{ $item->category->name }} @else Undefined @endisset</span></div>
                 </figure>
                 @endisset
@@ -66,6 +66,6 @@
         @endforeach
         </div>
     </div>
-    
+
 
 @endsection
