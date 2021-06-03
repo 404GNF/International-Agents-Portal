@@ -13,7 +13,6 @@ window.addEventListener('load', function() {
 
         xbuttons[i].addEventListener("click", function() {
             modals[i].classList.remove("is-active");
-            $('iframe').attr('src', $('iframe').attr('src'));
         })
     }
 
