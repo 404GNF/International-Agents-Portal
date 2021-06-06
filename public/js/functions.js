@@ -1,5 +1,8 @@
 window.addEventListener("load", function () {
-    enableFilter();
+    const defaultOrderedItems = $(".is-one-third");
+
+    enableFilter(defaultOrderedItems);
+    enableSearchBar(defaultOrderedItems);
 
     //taking all the thumbnails from the page
     let images = document.querySelectorAll(".thumbnails");
@@ -110,11 +113,12 @@ window.addEventListener("load", function () {
 });
 
 /**
- * Function that enables the filter functions of the Resources page
+ * Function that enables the filter functions of the Resources page.
+ * These filter are: file format, alphabetical and date
+ *
+ * @param defaultOrderedItems List of item when no filter is applied
  */
-function enableFilter() {
-    const defaultOrderedItems = $(".is-one-third");
-
+function enableFilter(defaultOrderedItems) {
     const fileFormatSelect = document.getElementById("file-formats");
     const nameSelect = document.getElementById("name-select");
     const dateSelect = document.getElementById("date-select");
@@ -176,7 +180,7 @@ function enableFilter() {
                     }
                 })
                 .appendTo("#itemContainer");
-        } 
+        }
         // No filter
         else {
             // Reverts back to the orginal item order
@@ -216,11 +220,53 @@ function enableFilter() {
                     }
                 })
                 .appendTo("#itemContainer");
-        } 
+        }
         // No filter
         else {
             // Reverts back to the orginal item order
             defaultOrderedItems.appendTo("#itemContainer");
         }
+    });
+}
+
+/**
+ * Function that enables the Resources page's search bar .
+ * The search bar only search for the titles/names of the items
+ *
+ * @param defaultOrderedItems List of item when no filter is applied
+ */
+function enableSearchBar(defaultOrderedItems) {
+    // Gets the search bar element
+    const searchbar = document.getElementById("searchbar");
+
+    // EventListener: everytime a key is pressed
+    searchbar.addEventListener("keyup", () => {
+        // Filter text is upper case to simplify the search
+        const filter = searchbar.value.toUpperCase();
+
+        // Get the default list of items
+        const items = defaultOrderedItems;
+
+        // Empty jQuery list that will contain the filtered item
+        let filteredItems= $();
+
+        // Loops through every items
+        for (i = 0; i < items.length; i++) {
+            // Gets the "detail" section of the item(div)
+            const itemDetails = items[i].children[0].children[1].children[0];
+            // Gets the item's title
+            const itemTitle = itemDetails.children[0].textContent;
+
+            // Checks if the title contains the filter
+            if (itemTitle.toUpperCase().indexOf(filter) > -1) {
+                // Add the item to the filtered items
+                filteredItems.push(items[i]);
+            }
+        }
+
+        // Clears/empties the item's container
+        $("#itemContainer").empty();
+        // Appends the filtered items to the container
+        filteredItems.appendTo("#itemContainer");
     });
 }
