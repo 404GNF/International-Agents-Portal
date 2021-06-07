@@ -16,6 +16,8 @@ class ItemController extends Controller
 
         $categories = Category::get();
 
+        $videos = Video::get();
+
         $resources = Resource::get();
 
         $resources = $this->generateFileFormat($resources);

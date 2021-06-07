@@ -11,6 +11,12 @@
   color: white;
 }
 
+.is-orange {
+  background-color: darkorange;
+  color: white;
+}
+
+
 h2 span {
   background-color: #3273dc;
   padding: 10px;
@@ -41,7 +47,11 @@ img {
 }
 
 figure {
-  height: 430px;
+  height: auto;
+}
+
+.ytb-thumbnail {
+    width: 20vw;
 }
 
 .imagefigure {
