@@ -40,7 +40,7 @@
                     <!-- Select a category -->
                     <div class="pb-3">
                         <p class="pb-2">Category</p>
-                        <button id="All" class="button filterbutton is-info is-small mb-1">All</button>
+
                         @foreach ($categories as $category)
                             <button id="{{ str_replace(' ', '-', $category->name) }}"
                                 class="button filterbutton is-small mb-1">{{ $category->name }}</button>
@@ -103,7 +103,7 @@
                                     <div class="media-content">
                                         <div class="content">
                                             <p class="title ">{{ $item->title }}</p>
-                                            <p class="subtitle is-6">Description</p>
+                                            <p class="subtitle is-6">{{ "Uploaded at: " . date_format($item->created_at, "d/m/y") }}</p>
                                             <!-- Action buttons -->
                                             <div class="columns px-3">
                                                 <!-- Open (in a new tab) button -->
@@ -138,7 +138,7 @@
                                     <div class="media-content">
                                         <div class="content">
                                             <p class="title ">{{ $item->title }}</p>
-                                            <p class="subtitle is-6">Description</p>
+                                            <p class="subtitle is-6">{{ "Uploaded at: " . date_format($item->created_at, "d/m/y") }}</p>
                                             <!-- Makes sure the item is not a youtube video -->
                                             @empty($item->youtube_url)
                                                 <!-- Action buttons -->
@@ -164,7 +164,7 @@
                                     </div>
                                 </article>
                             @endisset
-                            <div id="{{ $item->updated_at }}" class="updated_at-date"></div>
+                            <div id="{{ $item->created_at }}" class="created_at-date"></div>
                         </div>
 
 
