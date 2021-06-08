@@ -263,10 +263,29 @@ function enableSearchBar(defaultOrderedItems) {
                 filteredItems.push(items[i]);
             }
         }
+        // If there is no item found, a text message will display.
+        if (filteredItems.length === 0) {
+            // The Message for no Items
+            const message = "Sorry, there are no resources to be found.";
+            // Container for Message
+            const messageContainer = document.getElementById("itemContainer");
+            // Element for the Message
+            const messageHTMLElement = document.createElement("h3");
 
-        // Clears/empties the item's container
-        $("#itemContainer").empty();
-        // Appends the filtered items to the container
-        filteredItems.appendTo("#itemContainer");
+            // Add the text to the HTML Element
+            messageHTMLElement.innerText = message;
+
+            // Clears/empties the message container
+            messageContainer.innerHTML = "";
+
+            // Appends the message to the container
+            messageContainer.appendChild(messageHTMLElement);
+
+        } else {
+            // Clears/empties the item's container
+            $("#itemContainer").empty();
+            // Appends the filtered items to the container
+            filteredItems.appendTo("#itemContainer");
+        }
     });
 }
