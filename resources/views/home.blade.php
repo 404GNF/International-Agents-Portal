@@ -9,11 +9,20 @@
             <div class="container">
                 <p class="title is-2">Home</p>
                 <p class = 'subtitle is-3'>Personal Stories</p>
+                <div onclick="window.location.href='/admin/personal-stories'" class="button is-primary">Manage Personal Stories</div>
             </div>
         </div>
     </section>
 
-    <br>
+    @foreach($stories as $story)
 
-    
+            <div class="personal-stories">
+                <h2 class="personal-stories-titles" >{{$story->title}}</h2>
+                <a href="{{$story->url}}">
+                    <img class = "personal-stories-images" src="storage\{{ $story->img_src }}" alt="{{ $story->alt }}">
+                </a>
+            </div>
+    @endforeach
+
+
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PersonalStoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\FunctionsController;
@@ -15,9 +16,7 @@ use App\Http\Controllers\FunctionsController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [PersonalStoryController::class, 'index']);
 
 Route::get('/a-page-crashing-the-server', function(){
     return abort(500);

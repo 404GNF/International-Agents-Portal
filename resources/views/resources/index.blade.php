@@ -77,8 +77,10 @@
                 </div>
             </div>
 
+
             <!-- Index/show section -->
             <div id="itemContainer" class="container">
+
 
 
                 <!-- Checks if there are items to display -->
