@@ -57,18 +57,12 @@
                                 @endforeach
                             </select>
                         </div>
-                        <p class="pb-2">Name</p>
+                        <p class="pb-2">Sort by</p>
                         <div class="select is-fullwidth is-small mb-4">
-                            <select name="name" id="name-select">
+                            <select name="sortby" id="sort-select">
                                 <option value="0">No filter</option>
                                 <option value="a-z">A-Z</option>
                                 <option value="z-a">Z-A</option>
-                            </select>
-                        </div>
-                        <p class="pb-2">Date</p>
-                        <div class="select is-fullwidth is-small mb-4">
-                            <select name="date" id="date-select">
-                                <option value="0">No filter</option>
                                 <option value="old-new">Oldest to Newest</option>
                                 <option value="new-old">Newest to Oldest</option>
                             </select>
