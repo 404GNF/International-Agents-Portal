@@ -181,8 +181,8 @@
                             <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
                             <a class="btn zoom-out"><i class="fas fa-search-minus"></i></a>
                             <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
-                            <div class="box">
-                                <p class="image" style="width: 75vw; height: 80vh;">
+                            <div class="box target">
+                                <p class="image" style="height: 80vh;">
                                     <!-- Checks if a video, file or images should be displayed -->
                                     @isset($item->youtube_url)
                                         <iframe class="has-ratio" width="100%" height="100%"
@@ -194,9 +194,9 @@
                                         @isset($item->file)
                                             <embed
                                                 src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}"
-                                                width="100%" height="100%" />
+                                                />
                                         @else
-                                            <img class="selected-image" src="storage\{{ $item->thumbnail }}"
+                                            <img class="selected-image target" src="storage\{{ $item->thumbnail }}"
                                                 alt="{{ $item->title }}">
                                         @endisset
                                     @endisset
