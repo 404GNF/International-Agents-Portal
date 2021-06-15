@@ -2,7 +2,7 @@
 @section('content')
 
     <!-- 1st section of the page: shows the title + buttons if the user is an administrator -->
-    <section class="hero is-medium is-bold is-link">
+    <section class="hero is-bold is-link">
         <div class="hero-body" style="background-size: cover;">
             <div class="container">
                 <p class="title is-2">Resources</p>
