@@ -120,8 +120,8 @@ window.addEventListener("load", function () {
  */
 function enableFilter(defaultOrderedItems) {
     const fileFormatSelect = document.getElementById("file-formats");
-    const nameSelect = document.getElementById("name-select");
-    const dateSelect = document.getElementById("date-select");
+    const sortSelect = document.getElementById("sort-select");
+    // const dateSelect = document.getElementById("date-select");
 
     // Logic for the file format/type selector
     fileFormatSelect.addEventListener("change", () => {
@@ -140,13 +140,12 @@ function enableFilter(defaultOrderedItems) {
         }
     });
 
-    // Logic for the alphabetical filter selector
-    nameSelect.addEventListener("change", () => {
-        // Prevents interferences with the date filter
-        dateSelect.value = "0";
+    // EventListener attached to the select HTML element
+    sortSelect.addEventListener("change", () => {
 
         // Gets the selected value
-        const value = nameSelect.value;
+        const value = sortSelect.value;
+
         // A to Z filter
         if (value == "a-z") {
             // Selects all the item, sort them and "rewrite" them to the DOM
@@ -181,22 +180,8 @@ function enableFilter(defaultOrderedItems) {
                 })
                 .appendTo("#itemContainer");
         }
-        // No filter
-        else {
-            // Reverts back to the orginal item order
-            defaultOrderedItems.appendTo("#itemContainer");
-        }
-    });
-
-    // Logic for the chronological filter selector
-    dateSelect.addEventListener("change", () => {
-        // Prevents interferences with the name/alphabetical filter
-        nameSelect.value = "0";
-
-        // Gets the selected value
-        const value = dateSelect.value;
         // Oldest to Newest filter
-        if (value == "old-new") {
+        else if (value == "old-new") {
             // Selects all the item, sort them and "rewrite" them to the DOM
             $(".is-one-third")
                 .sort(function (a, b) {
