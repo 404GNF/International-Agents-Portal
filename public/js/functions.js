@@ -4,6 +4,21 @@ window.addEventListener("load", function () {
     enableFilter(defaultOrderedItems);
     enableSearchBar(defaultOrderedItems);
 
+
+    // Social media menu hide/show
+    const menu = document.getElementById("social");
+    const hideButton = document.getElementById("hide-social");
+    const showButton = document.getElementById("show-social");
+    hideButton.addEventListener("click", ()=>{
+        menu.style.visibility = "hidden";
+        showButton.style.visibility = "visible";
+    });
+    showButton.addEventListener("click", ()=>{
+        menu.style.visibility = "visible";
+        showButton.style.visibility = "hidden";
+    });
+
+
     //taking all the thumbnails from the page
     let images = document.querySelectorAll(".thumbnails");
 

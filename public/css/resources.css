@@ -183,7 +183,7 @@ figure {
 .social li{
     padding:10px 10px;
     font-size:25px;
-    transition:all 0.8s ease-in-out;
+    transition:all 0.2s ease-in-out;
 }
 .social li:hover{
     margin-right:-30px;
@@ -195,7 +195,7 @@ figure {
 }
 .fa{
     color:#fff;
-    transition:all 0.8s ease-in-out;
+    transition:all 0.2s ease-in-out;
 }
 .fb{
     background-color:#3C5A98;
@@ -209,7 +209,14 @@ figure {
 .pin{
     background-color:#CB2128;
 }
-.vim{
-    background-color:#59BFBE;
+.linkedin{
+  background-color: #0077b5;
+}
+.email{
+    background-color:#848484;
+}
+
+#hide-social{
+  cursor: pointer;
 }
 
