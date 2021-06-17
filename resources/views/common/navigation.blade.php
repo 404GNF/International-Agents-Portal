@@ -37,3 +37,13 @@
         </div>
     </div>
 </nav>
+
+<div class="sticky-social">
+    <ul class="social">
+        <li class="fb"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        <li class="twitter"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        <li class="vim"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        <li class="vim"><a href="#"><i class="fa fa-mail-reply" aria-hidden="true"></i></a></li>
+
+    </ul>
+</div>
