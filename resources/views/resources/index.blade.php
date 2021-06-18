@@ -57,18 +57,12 @@
                                 @endforeach
                             </select>
                         </div>
-                        <p class="pb-2">Name</p>
+                        <p class="pb-2">Sort by</p>
                         <div class="select is-fullwidth is-small mb-4">
-                            <select name="name" id="name-select">
+                            <select name="sortby" id="sort-select">
                                 <option value="0">No filter</option>
                                 <option value="a-z">A-Z</option>
                                 <option value="z-a">Z-A</option>
-                            </select>
-                        </div>
-                        <p class="pb-2">Date</p>
-                        <div class="select is-fullwidth is-small mb-4">
-                            <select name="date" id="date-select">
-                                <option value="0">No filter</option>
                                 <option value="old-new">Oldest to Newest</option>
                                 <option value="new-old">Newest to Oldest</option>
                             </select>
@@ -91,7 +85,7 @@
 
                         <!-- Card/box for 1 item; Adds a class name when user filter categories -->
                         <div
-                            class="is-full box is-one-third @isset($item->category->name){{ str_replace(' ', '-', $item->category->name) }}@else 'Undefined' @endisset {{ $item->file_format }}">
+                            class="is-full box is-one-third notification @isset($item->category->name){{ str_replace(' ', '-', $item->category->name) }}@else 'Undefined' @endisset {{ $item->file_format }}">
                             @isset($item->youtube_url)
                                 <article class="media">
                                     <!-- Thumbnail -->
@@ -105,6 +99,9 @@
                                     <div class="media-content">
                                         <div class="content">
                                             <p class="title ">{{ $item->title }}</p>
+                                            <p class="subtitle is-6" style="margin-bottom: 6px;">
+                                                @isset($item->category->name)<span class="tag notif is-info">{{ str_replace(' ', '-', $item->category->name) }}</span>@else <span class="tag notif is-info">Undefined</span>@endisset
+                                            </p>
                                             <p class="subtitle is-6">
                                                 {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}</p>
                                             <!-- Action buttons -->
@@ -141,8 +138,13 @@
                                     <div class="media-content">
                                         <div class="content">
                                             <p class="title ">{{ $item->title }}</p>
+                                            <p class="subtitle is-6" style="margin-bottom: 6px;">
+                                                @isset($item->category->name)<span class="tag notif is-info">{{ str_replace(' ', '-', $item->category->name) }}</span>@else <span class="tag notif is-info">Undefined</span>@endisset
+                                            </p>
                                             <p class="subtitle is-6">
-                                                {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}</p>
+                                                {{ "Uploaded at: " . date_format($item->created_at, 'd/m/y') }}</p>
+                                            <p class="subtitle is-6">
+                                                {{ $item->description }}</p>
                                             <!-- Makes sure the item is not a youtube video -->
                                             @empty($item->youtube_url)
                                                 <!-- Action buttons -->

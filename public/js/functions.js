@@ -101,11 +101,11 @@ window.addEventListener("load", function () {
     };
 
     //All the elements with the class 'notification'
-    let toCheck = document.querySelectorAll(".notification");
+    let toCheck = document.querySelectorAll(".notif");
 
     //If the innerHTML of the elements with the class 'notification' are 'Undefined' run the check function
     for (let i = 0; i < toCheck.length; i++) {
-        if (toCheck[i].innerHTML == " Undefined ") {
+        if (toCheck[i].innerHTML == "Undefined") {
             check();
             break;
         }
@@ -120,8 +120,8 @@ window.addEventListener("load", function () {
  */
 function enableFilter(defaultOrderedItems) {
     const fileFormatSelect = document.getElementById("file-formats");
-    const nameSelect = document.getElementById("name-select");
-    const dateSelect = document.getElementById("date-select");
+    const sortSelect = document.getElementById("sort-select");
+    // const dateSelect = document.getElementById("date-select");
 
     // Logic for the file format/type selector
     fileFormatSelect.addEventListener("change", () => {
@@ -140,13 +140,12 @@ function enableFilter(defaultOrderedItems) {
         }
     });
 
-    // Logic for the alphabetical filter selector
-    nameSelect.addEventListener("change", () => {
-        // Prevents interferences with the date filter
-        dateSelect.value = "0";
+    // EventListener attached to the select HTML element
+    sortSelect.addEventListener("change", () => {
 
         // Gets the selected value
-        const value = nameSelect.value;
+        const value = sortSelect.value;
+
         // A to Z filter
         if (value == "a-z") {
             // Selects all the item, sort them and "rewrite" them to the DOM
@@ -181,22 +180,8 @@ function enableFilter(defaultOrderedItems) {
                 })
                 .appendTo("#itemContainer");
         }
-        // No filter
-        else {
-            // Reverts back to the orginal item order
-            defaultOrderedItems.appendTo("#itemContainer");
-        }
-    });
-
-    // Logic for the chronological filter selector
-    dateSelect.addEventListener("change", () => {
-        // Prevents interferences with the name/alphabetical filter
-        nameSelect.value = "0";
-
-        // Gets the selected value
-        const value = dateSelect.value;
         // Oldest to Newest filter
-        if (value == "old-new") {
+        else if (value == "old-new") {
             // Selects all the item, sort them and "rewrite" them to the DOM
             $(".is-one-third")
                 .sort(function (a, b) {
@@ -263,10 +248,29 @@ function enableSearchBar(defaultOrderedItems) {
                 filteredItems.push(items[i]);
             }
         }
+        // If there is no item found, a text message will display.
+        if (filteredItems.length === 0) {
+            // The Message for no Items
+            const message = "Sorry, there are no resources to be found.";
+            // Container for Message
+            const messageContainer = document.getElementById("itemContainer");
+            // Element for the Message
+            const messageHTMLElement = document.createElement("h3");
 
-        // Clears/empties the item's container
-        $("#itemContainer").empty();
-        // Appends the filtered items to the container
-        filteredItems.appendTo("#itemContainer");
+            // Add the text to the HTML Element
+            messageHTMLElement.innerText = message;
+
+            // Clears/empties the message container
+            messageContainer.innerHTML = "";
+
+            // Appends the message to the container
+            messageContainer.appendChild(messageHTMLElement);
+
+        } else {
+            // Clears/empties the item's container
+            $("#itemContainer").empty();
+            // Appends the filtered items to the container
+            filteredItems.appendTo("#itemContainer");
+        }
     });
 }

@@ -2049,6 +2049,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/93db226946453f4285558b7c3166ddb6e7ea5400",
                 "reference": "93db226946453f4285558b7c3166ddb6e7ea5400",
+
                 "shasum": ""
             },
             "require": {
@@ -2203,7 +2204,9 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+
             "time": "2021-06-15T14:00:32+00:00"
+
         },
         {
             "name": "laravel/tinker",
