@@ -86,7 +86,7 @@
                         <div class="resource">
                             <!-- Card/box for 1 item; Adds a class name when user filter categories -->
                             <div
-                                class="is-full box is-one-third @isset($item->category->name){{ str_replace(' ', '-', $item->category->name) }}@else 'Undefined' @endisset {{ $item->file_format }}">
+                                class="is-full box is-one-third notification @isset($item->category->name){{ str_replace(' ', '-', $item->category->name) }}@else 'Undefined' @endisset {{ $item->file_format }}">
                                 @isset($item->youtube_url)
                                     <article class="media">
                                         <!-- Thumbnail -->
@@ -100,8 +100,16 @@
                                         <div class="media-content">
                                             <div class="content">
                                                 <p class="title ">{{ $item->title }}</p>
+                                                <p class="subtitle is-6" style="margin-bottom: 6px;">
+                                                    @isset($item->category->name)
+                                                        <span class="tag notif is-info">{{ str_replace(' ', '-', $item->category->name) }}</span>
+                                                    @else
+                                                        <span class="tag notif is-info">Undefined</span>
+                                                    @endisset
+                                                </p>
                                                 <p class="subtitle is-6">
-                                                    {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}</p>
+                                                    {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}
+                                                </p>
                                                 <!-- Action buttons -->
                                                 <div class="columns px-3">
                                                     <!-- Open (in a new tab) button -->
@@ -137,8 +145,19 @@
                                         <div class="media-content">
                                             <div class="content">
                                                 <p class="title ">{{ $item->title }}</p>
+                                                <p class="subtitle is-6" style="margin-bottom: 6px;">
+                                                    @isset($item->category->name)
+                                                        <span class="tag notif is-info">{{ str_replace(' ', '-', $item->category->name) }}</span>
+                                                    @else 
+                                                        <span class="tag notif is-info">Undefined</span>
+                                                    @endisset
+                                                </p>
                                                 <p class="subtitle is-6">
-                                                    {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}</p>
+                                                    {{ "Uploaded at: " . date_format($item->created_at, 'd/m/y') }}
+                                                </p>
+                                                <p class="subtitle is-6">
+                                                    {{ $item->description }}
+                                                </p>
                                                 <!-- Makes sure the item is not a youtube video -->
                                                 @empty($item->youtube_url)
                                                     <!-- Action buttons -->
@@ -172,37 +191,37 @@
 
 
                             <!-- HTML to show an item's content;
-                                        Modal is called when the user click on a "preview" button;
-                                        Needs ./public/js/function.js to work properly;
-                                    -->
-                            @if ($item->file_format == 'jpg' || $item->file_format == 'jpeg' || $item->file_format == 'pdf' || $item->file_format == 'png' || $item->file_format == 'tiff' || $item->file_format == 'gif' ||isset($item->youtube_url))
-                            <div class="modal">
-                                <div class="modal-background"></div>
-                                <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
-                                <a class="btn zoom-out"><i class="fas fa-search-minus"></i></a>
-                                <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
-                                <div class="box target">
-                                    <p class="image">
-                                        <!-- Checks if a video, file or images should be displayed -->
-                                        @isset($item->youtube_url)
-                                            <iframe class="has-ratio embed-container" width="1280" height="720"
-                                                src="https://www.youtube.com/embed/{{ explode('=', $item->youtube_url)[1] }}"
-                                                title="YouTube video player" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                        @else
-                                            @isset($item->file)
-                                                <embed @if($item->file_format == 'pdf')style="width: 100vh"@endif
-                                                    src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}" />
+                                            Modal is called when the user click on a "preview" button;
+                                            Needs ./public/js/function.js to work properly;
+                                        -->
+                            @if ($item->file_format == 'jpg' || $item->file_format == 'jpeg' || $item->file_format == 'pdf' || $item->file_format == 'png' || $item->file_format == 'tiff' || $item->file_format == 'gif' || isset($item->youtube_url))
+                                <div class="modal">
+                                    <div class="modal-background"></div>
+                                    <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
+                                    <a class="btn zoom-out"><i class="fas fa-search-minus"></i></a>
+                                    <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
+                                    <div class="box target">
+                                        <p class="image">
+                                            <!-- Checks if a video, file or images should be displayed -->
+                                            @isset($item->youtube_url)
+                                                <iframe class="has-ratio embed-container" width="1280" height="720"
+                                                    src="https://www.youtube.com/embed/{{ explode('=', $item->youtube_url)[1] }}"
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
                                             @else
-                                                <img class="selected-image target" src="storage\{{ $item->thumbnail }}"
-                                                    alt="{{ $item->title }}">
+                                                @isset($item->file)
+                                                    <embed @if ($item->file_format == 'pdf') style="width: 100vh" @endif
+                                                        src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}" />
+                                                @else
+                                                    <img class="selected-image target" src="storage\{{ $item->thumbnail }}"
+                                                        alt="{{ $item->title }}">
+                                                @endisset
                                             @endisset
-                                        @endisset
-                                    </p>
+                                        </p>
+                                    </div>
+                                    <button id="close" class="modal-close is-large" aria-label="close"></button>
                                 </div>
-                                <button id="close" class="modal-close is-large" aria-label="close"></button>
-                            </div>
                             @endif
                         </div>
 
