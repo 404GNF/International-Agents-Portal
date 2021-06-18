@@ -20,6 +20,7 @@ class CreateResourcesTable extends Migration
             $table->text('file');
             $table->integer('category_id')->nullable();
             $table->timestamps();
+            $table->text('description')->nullable();
         });
     }
 
