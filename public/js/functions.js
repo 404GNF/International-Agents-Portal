@@ -1,26 +1,12 @@
 window.addEventListener("load", function () {
-    const defaultOrderedItems = $(".is-one-third");
+    // const defaultOrderedItems = $(".is-one-third");
+    const defaultOrderedItems = $(".resource");
 
     enableFilter(defaultOrderedItems);
     enableSearchBar(defaultOrderedItems);
 
-    //taking all the thumbnails from the page
-    let images = document.querySelectorAll(".thumbnails");
+    enablePreview();
 
-    //opening and closing modals
-    let modals = document.querySelectorAll(".modal");
-    let xbuttons = document.querySelectorAll(".modal-close");
-
-    for (let i = 0; i < images.length; i++) {
-        images[i].addEventListener("click", function () {
-            modals[i].classList.add("is-active");
-        });
-
-        xbuttons[i].addEventListener("click", function () {
-            modals[i].classList.remove("is-active");
-            $("iframe").attr("src", $("iframe").attr("src"));
-        });
-    }
 
     //filter-search with the buttons above the resources
     $(".filterbutton").click(function () {
@@ -112,6 +98,27 @@ window.addEventListener("load", function () {
     }
 });
 
+function enablePreview(){
+    //taking all the previewButtons from the page
+    const previewButtons = document.querySelectorAll("#previewButton");
+    // console.log(previewButtons);
+
+    //opening and closing modals
+    let modals = document.querySelectorAll(".modal");
+    let xbuttons = document.querySelectorAll(".modal-close");
+
+    for (let i = 0; i < previewButtons.length; i++) {
+        previewButtons[i].addEventListener("click", function () {
+            modals[i].classList.add("is-active");
+        });
+
+        xbuttons[i].addEventListener("click", function () {
+            modals[i].classList.remove("is-active");
+            $("iframe").attr("src", $("iframe").attr("src"));
+        });
+    }
+}
+
 /**
  * Function that enables the filter functions of the Resources page.
  * These filter are: file format, alphabetical and date
@@ -121,7 +128,6 @@ window.addEventListener("load", function () {
 function enableFilter(defaultOrderedItems) {
     const fileFormatSelect = document.getElementById("file-formats");
     const sortSelect = document.getElementById("sort-select");
-    // const dateSelect = document.getElementById("date-select");
 
     // Logic for the file format/type selector
     fileFormatSelect.addEventListener("change", () => {
@@ -238,7 +244,8 @@ function enableSearchBar(defaultOrderedItems) {
         // Loops through every items
         for (i = 0; i < items.length; i++) {
             // Gets the "detail" section of the item(div)
-            const itemDetails = items[i].children[0].children[1].children[0];
+            const itemDetails = items[i].children[0].children[0].children[1].children[0];
+            
             // Gets the item's title
             const itemTitle = itemDetails.children[0].textContent;
 
@@ -248,6 +255,7 @@ function enableSearchBar(defaultOrderedItems) {
                 filteredItems.push(items[i]);
             }
         }
+
         // If there is no item found, a text message will display.
         if (filteredItems.length === 0) {
             // The Message for no Items
@@ -271,6 +279,7 @@ function enableSearchBar(defaultOrderedItems) {
             $("#itemContainer").empty();
             // Appends the filtered items to the container
             filteredItems.appendTo("#itemContainer");
+
         }
     });
 }
