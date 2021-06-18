@@ -28,6 +28,10 @@ Route::get('/how-to-apply', function() {
     return view('apply');
 });
 
+Route::get('/socials', function() {
+    return view('socials');
+});
+
 Route::get('/logout', [FunctionsController::class, 'logout']);
 
 Route::group(['prefix' => 'admin'], function () {
