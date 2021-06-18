@@ -173,7 +173,7 @@ figure {
 }
 .sticky-social{
     position:fixed;
-    top:250px;
+    top:310px;
     padding:0px;
     margin:0px;
 }
@@ -214,6 +214,10 @@ figure {
 }
 .email{
     background-color:#848484;
+}
+
+.youtube{
+    background-color: #CB2128;
 }
 
 #hide-social{

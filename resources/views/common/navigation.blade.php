@@ -43,6 +43,7 @@
         <li class="fb"><a href="https://www.facebook.com/groups/996378877047488/?fref=ts" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
         <li class="twitter"><a href="https://twitter.com/hzeeland?lang=en" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
         <li class="linkedin"><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finfo.hz.nl%2Fwebshop%23.YMtNws--NC0.linkedin" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        <li class="youtube"><a href="https://www.youtube.com/channel/UCUsGkGPCSHUK44BJ2YYEBxg" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
         <li class="email"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
         <span class="icon is-medium" id="hide-social">
             <i class="fas fa-caret-left"></i>
