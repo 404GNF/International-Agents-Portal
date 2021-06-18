@@ -83,128 +83,127 @@
                     <!-- Loop through every item -->
                     @foreach ($items as $item)
 
-                        <!-- Card/box for 1 item; Adds a class name when user filter categories -->
-                        <div
-                            class="is-full box is-one-third notification @isset($item->category->name){{ str_replace(' ', '-', $item->category->name) }}@else 'Undefined' @endisset {{ $item->file_format }}">
-                            @isset($item->youtube_url)
-                                <article class="media">
-                                    <!-- Thumbnail -->
-                                    <figure class="media-left">
-                                        <p class="image is-128x128 is-square">
-                                            <img src="https://img.youtube.com/vi/{{ explode('=', $item->youtube_url)[1] }}/hqdefault.jpg"
-                                                alt="video thumbnail" style="cursor: default;">
-                                        </p>
-                                    </figure>
-                                    <!-- Body of the card/box -->
-                                    <div class="media-content">
-                                        <div class="content">
-                                            <p class="title ">{{ $item->title }}</p>
-                                            <p class="subtitle is-6" style="margin-bottom: 6px;">
-                                                @isset($item->category->name)<span class="tag notif is-info">{{ str_replace(' ', '-', $item->category->name) }}</span>@else <span class="tag notif is-info">Undefined</span>@endisset
+                        <div class="resource">
+                            <!-- Card/box for 1 item; Adds a class name when user filter categories -->
+                            <div
+                                class="is-full box is-one-third @isset($item->category->name){{ str_replace(' ', '-', $item->category->name) }}@else 'Undefined' @endisset {{ $item->file_format }}">
+                                @isset($item->youtube_url)
+                                    <article class="media">
+                                        <!-- Thumbnail -->
+                                        <figure class="media-left">
+                                            <p class="image is-128x128 is-square">
+                                                <img src="https://img.youtube.com/vi/{{ explode('=', $item->youtube_url)[1] }}/hqdefault.jpg"
+                                                    alt="video thumbnail" style="cursor: default;">
                                             </p>
-                                            <p class="subtitle is-6">
-                                                {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}</p>
-                                            <!-- Action buttons -->
-                                            <div class="columns px-3">
-                                                <!-- Open (in a new tab) button -->
-                                                <a href="{{ $item->youtube_url }}" target="blank"
-                                                    class="button is-orange is-small is-fullwidth column mr-2">
-                                                    <span class="pr-2">
-                                                        <i class="fas fa-share-square"></i>
-                                                    </span>
-                                                    <span>Open</span>
-                                                </a>
-                                                <!-- Preview button -->
-                                                <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
-                                                    <span class="pr-2">
-                                                        <i class="fas fa-eye"></i>
-                                                    </span>
-                                                    <span>Preview</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            @else
-                                <article class="media">
-                                    <!-- Thumbnail -->
-                                    <figure class="media-left">
-                                        <p class="image is-128x128 is-square">
-                                            <img src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}"
-                                                style="object-fit: cover; cursor: default;">
-                                        </p>
-                                    </figure>
-                                    <!-- Body of the card/box -->
-                                    <div class="media-content">
-                                        <div class="content">
-                                            <p class="title ">{{ $item->title }}</p>
-                                            <p class="subtitle is-6" style="margin-bottom: 6px;">
-                                                @isset($item->category->name)<span class="tag notif is-info">{{ str_replace(' ', '-', $item->category->name) }}</span>@else <span class="tag notif is-info">Undefined</span>@endisset
-                                            </p>
-                                            <p class="subtitle is-6">
-                                                {{ "Uploaded at: " . date_format($item->created_at, 'd/m/y') }}</p>
-                                            <p class="subtitle is-6">
-                                                {{ $item->description }}</p>
-                                            <!-- Makes sure the item is not a youtube video -->
-                                            @empty($item->youtube_url)
+                                        </figure>
+                                        <!-- Body of the card/box -->
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p class="title ">{{ $item->title }}</p>
+                                                <p class="subtitle is-6">
+                                                    {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}</p>
                                                 <!-- Action buttons -->
                                                 <div class="columns px-3">
-                                                    <!-- Download button -->
-                                                    <a href="{{ 'storage/' . explode('"', $item->file)[3] }}" download
+                                                    <!-- Open (in a new tab) button -->
+                                                    <a href="{{ $item->youtube_url }}" target="blank"
                                                         class="button is-orange is-small is-fullwidth column mr-2">
                                                         <span class="pr-2">
-                                                            <i class="fas fa-download"></i>
+                                                            <i class="fas fa-share-square"></i>
                                                         </span>
-                                                        <span>Download</span>
+                                                        <span>Open</span>
                                                     </a>
                                                     <!-- Preview button -->
-                                                    <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
+                                                    <a id="previewButton"
+                                                        class="button thumbnails is-info is-small is-fullwidth column ml-2">
                                                         <span class="pr-2">
                                                             <i class="fas fa-eye"></i>
                                                         </span>
                                                         <span>Preview</span>
                                                     </a>
                                                 </div>
-                                            @endempty
+                                            </div>
                                         </div>
-                                    </div>
-                                </article>
-                            @endisset
-                            <div id="{{ $item->created_at }}" class="created_at-date"></div>
-                        </div>
-
-
-                        <!-- HTML to show an item's content;
-                                    Modal is called when the user click on a "preview" button;
-                                    Needs ./public/js/function.js to work properly;
-                                -->
-                        <div class="modal">
-                            <div class="modal-background"></div>
-                            <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
-                            <a class="btn zoom-out"><i class="fas fa-search-minus"></i></a>
-                            <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
-                            <div class="box">
-                                <p class="image" style="width: 75vw; height: 80vh;">
-                                    <!-- Checks if a video, file or images should be displayed -->
-                                    @isset($item->youtube_url)
-                                        <iframe class="has-ratio" width="100%" height="100%"
-                                            src="https://www.youtube.com/embed/{{ explode('=', $item->youtube_url)[1] }}"
-                                            title="YouTube video player" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                    @else
-                                        @isset($item->file)
-                                            <embed
-                                                src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}"
-                                                width="100%" height="100%" />
-                                        @else
-                                            <img class="selected-image" src="storage\{{ $item->thumbnail }}"
-                                                alt="{{ $item->title }}">
-                                        @endisset
-                                    @endisset
-                                </p>
+                                    </article>
+                                @else
+                                    <article class="media">
+                                        <!-- Thumbnail -->
+                                        <figure class="media-left">
+                                            <p class="image is-128x128 is-square">
+                                                <img src="storage/{{ $item->thumbnail }}" alt="{{ $item->title }}"
+                                                    style="object-fit: cover; cursor: default;">
+                                            </p>
+                                        </figure>
+                                        <!-- Body of the card/box -->
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p class="title ">{{ $item->title }}</p>
+                                                <p class="subtitle is-6">
+                                                    {{ 'Uploaded at: ' . date_format($item->created_at, 'd/m/y') }}</p>
+                                                <!-- Makes sure the item is not a youtube video -->
+                                                @empty($item->youtube_url)
+                                                    <!-- Action buttons -->
+                                                    <div class="columns px-3">
+                                                        <!-- Download button -->
+                                                        <a href="{{ 'storage/' . explode('"', $item->file)[3] }}" download
+                                                            class="button is-orange is-small is-fullwidth column mr-2">
+                                                            <span class="pr-2">
+                                                                <i class="fas fa-download"></i>
+                                                            </span>
+                                                            <span>Download</span>
+                                                        </a>
+                                                        @if ($item->file_format == 'jpg' || $item->file_format == 'jpeg' || $item->file_format == 'pdf' || $item->file_format == 'png' || $item->file_format == 'tiff' || $item->file_format == 'gif')
+                                                            <!-- Preview button -->
+                                                            <a id="previewButton"
+                                                                class="button thumbnails is-info is-small is-fullwidth column ml-2">
+                                                                <span class="pr-2">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </span>
+                                                                <span>Preview</span>
+                                                            </a>
+                                                        @endif
+                                                    </div>
+                                                @endempty
+                                            </div>
+                                        </div>
+                                    </article>
+                                @endisset
+                                <div id="{{ $item->created_at }}" class="created_at-date"></div>
                             </div>
-                            <button id="close" class="modal-close is-large" aria-label="close"></button>
+
+
+                            <!-- HTML to show an item's content;
+                                        Modal is called when the user click on a "preview" button;
+                                        Needs ./public/js/function.js to work properly;
+                                    -->
+                            @if ($item->file_format == 'jpg' || $item->file_format == 'jpeg' || $item->file_format == 'pdf' || $item->file_format == 'png' || $item->file_format == 'tiff' || $item->file_format == 'gif' ||isset($item->youtube_url))
+                            <div class="modal">
+                                <div class="modal-background"></div>
+                                <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
+                                <a class="btn zoom-out"><i class="fas fa-search-minus"></i></a>
+                                <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
+                                <div class="box target">
+                                    <p class="image">
+                                        <!-- Checks if a video, file or images should be displayed -->
+                                        @isset($item->youtube_url)
+                                            <iframe class="has-ratio embed-container" width="1280" height="720"
+                                                src="https://www.youtube.com/embed/{{ explode('=', $item->youtube_url)[1] }}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                        @else
+                                            @isset($item->file)
+                                                <embed @if($item->file_format == 'pdf')style="width: 100vh"@endif
+                                                    src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}" />
+                                            @else
+                                                <img class="selected-image target" src="storage\{{ $item->thumbnail }}"
+                                                    alt="{{ $item->title }}">
+                                            @endisset
+                                        @endisset
+                                    </p>
+                                </div>
+                                <button id="close" class="modal-close is-large" aria-label="close"></button>
+                            </div>
+                            @endif
                         </div>
 
                     @endforeach

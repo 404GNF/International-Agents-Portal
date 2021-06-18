@@ -19,6 +19,8 @@
         </div>
     </section>
 
+
+
 {{--    Goes through all of the personal stories and creates a div for each of them that consists heading and image that--}}
 {{--    is link to another webpage--}}
     @foreach($stories as $story)

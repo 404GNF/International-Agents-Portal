@@ -155,3 +155,88 @@ figure {
   transform: translateY(-50%);
 }
 
+.embed-container { 
+  position: relative; 
+  overflow: hidden; 
+  max-width: 100%; 
+} 
+
+.embed-container iframe, .embed-container object, .embed-container embed { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+
+embed {
+  height: 90vh;
+}
+.section1{
+    position:relative;
+    height:600px;
+    background:#F1F5F8;
+    padding:10px 0px;
+    width:100%;
+}
+.section1 h2{
+    text-align:center;
+    font-size:40px;
+}
+.section1 p{
+    text-align:center;
+    padding:0px 70px;
+    color:grey;
+}
+.sticky-social{
+    position:fixed;
+    top:310px;
+    padding:0px;
+    margin:0px;
+}
+.social{
+    list-style:none;
+}
+.social li{
+    padding:10px 10px;
+    font-size:25px;
+    transition:all 0.2s ease-in-out;
+}
+.social li:hover{
+    margin-right:-30px;
+    box-shadow:2px 5px 10px grey;
+}
+.social li:hover .fa{
+    margin-left:20px;
+
+}
+.fa{
+    color:#fff;
+    transition:all 0.2s ease-in-out;
+}
+.fb{
+    background-color:#3C5A98;
+}
+.twitter{
+    background-color:#1EA1F2;
+}
+.insta{
+    background-color:#DC4F42;
+}
+.pin{
+    background-color:#CB2128;
+}
+.linkedin{
+  background-color: #0077b5;
+}
+.email{
+    background-color:#848484;
+}
+
+.youtube{
+    background-color: #CB2128;
+}
+
+#hide-social{
+  cursor: pointer;
+}
