@@ -24,6 +24,10 @@
             <a href = "/how-to-apply" class="navbar-item {{ Request::path() === 'how-to-apply' ? "is-active" : "" }}">
                 How to apply?
             </a>
+
+            <a href = "/socials" class="navbar-item {{ Request::path() === 'socials' ? "is-active" : "" }}">
+                Socials
+            </a>
         </div>
 
         <div class="navbar-end">
