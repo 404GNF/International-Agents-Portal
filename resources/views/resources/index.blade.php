@@ -149,6 +149,7 @@
                                                         </span>
                                                         <span>Download</span>
                                                     </a>
+                                                    @if ($item->file_format == 'jpg' || $item->file_format == 'jpeg' || $item->file_format == 'pdf' || $item->file_format == 'png' || $item->file_format == 'tiff' || $item->file_format == 'gif')
                                                     <!-- Preview button -->
                                                     <a class="button thumbnails is-info is-small is-fullwidth column ml-2">
                                                         <span class="pr-2">
@@ -156,6 +157,7 @@
                                                         </span>
                                                         <span>Preview</span>
                                                     </a>
+                                                    @endif
                                                 </div>
                                             @endempty
                                         </div>
@@ -176,10 +178,10 @@
                             <a class="btn zoom-out"><i class="fas fa-search-minus"></i></a>
                             <a class="btn zoom-init"><i class="fas fa-recycle"></i></a>
                             <div class="box target">
-                                <p class="image" style="height: 80vh;">
+                                <p class="image">
                                     <!-- Checks if a video, file or images should be displayed -->
                                     @isset($item->youtube_url)
-                                        <iframe class="has-ratio" width="100%" height="100%"
+                                        <iframe class="has-ratio embed-container" width="1920" height="1080"
                                             src="https://www.youtube.com/embed/{{ explode('=', $item->youtube_url)[1] }}"
                                             title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
