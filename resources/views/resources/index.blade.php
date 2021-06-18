@@ -175,6 +175,7 @@
                                         Modal is called when the user click on a "preview" button;
                                         Needs ./public/js/function.js to work properly;
                                     -->
+                            @if ($item->file_format == 'jpg' || $item->file_format == 'jpeg' || $item->file_format == 'pdf' || $item->file_format == 'png' || $item->file_format == 'tiff' || $item->file_format == 'gif' ||isset($item->youtube_url))
                             <div class="modal">
                                 <div class="modal-background"></div>
                                 <a class="btn zoom"><i class="fas fa-search-plus"></i></a>
@@ -184,14 +185,14 @@
                                     <p class="image">
                                         <!-- Checks if a video, file or images should be displayed -->
                                         @isset($item->youtube_url)
-                                            <iframe class="has-ratio embed-container" width="1920" height="1080"
+                                            <iframe class="has-ratio embed-container" width="1280" height="720"
                                                 src="https://www.youtube.com/embed/{{ explode('=', $item->youtube_url)[1] }}"
                                                 title="YouTube video player" frameborder="0"
                                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                 allowfullscreen></iframe>
                                         @else
                                             @isset($item->file)
-                                                <embed
+                                                <embed @if($item->file_format == 'pdf')style="width: 100vh"@endif
                                                     src="storage/{{ json_decode(substr($item->file, 1, -1), true)['download_link'] }}" />
                                             @else
                                                 <img class="selected-image target" src="storage\{{ $item->thumbnail }}"
@@ -202,6 +203,7 @@
                                 </div>
                                 <button id="close" class="modal-close is-large" aria-label="close"></button>
                             </div>
+                            @endif
                         </div>
 
                     @endforeach
