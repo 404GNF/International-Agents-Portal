@@ -18,7 +18,7 @@
                     <div class="card-image">
                         <figure class="image">
                             <a href="https://www.youtube.com/c/HZUniversityofAppliedSciences/playlists?view=50&sort=dd&shelf_id=5" target="_blank">
-                                <img src="/storage/img/ytImg.png" alt="image">
+                                <img src="/img/ytImg.png" alt="image">
                             </a>
                         </figure>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="card-image">
                         <figure class="image">
                             <a href="https://www.facebook.com/groups/996378877047488/?fref=ts" target="_blank">
-                                <img src="/storage/img/fbImg.png" alt="image">
+                                <img src="/img/fbImg.png" alt="image">
                             </a>
                         </figure>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="card-image">
                         <figure class="image">
                             <a href="https://www.linkedin.com/school/hz-university-of-applied-sciences/" target="_blank">
-                                <img src="/storage/img/linImg.png" alt="image">
+                                <img src="/img/linImg.png" alt="image">
                             </a>
                         </figure>
                     </div>
