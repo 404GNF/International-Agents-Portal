@@ -26,6 +26,9 @@
 @include('common.footer')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/functions.js') }}"></script>
+@if ($user = Auth::user())
+    <script type="text/javascript" src="{{ asset('js/alert.js') }}"></script>
+@endif
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js"></script>
 </body>
 </html>
