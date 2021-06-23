@@ -7,7 +7,6 @@ window.addEventListener("load", function () {
 
     enablePreview();
 
-
     //filter-search with the buttons above the resources
     $(".filterbutton").click(function () {
         $(".filterbutton").removeClass("is-info");
