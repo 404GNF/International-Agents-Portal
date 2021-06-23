@@ -5,9 +5,12 @@
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+            <div class="navbar-start">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </div>
         </a>
     </div>
 
@@ -32,11 +35,13 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
+                <div class="buttons">
                     @if (Auth::guest())
-                        <div onclick="window.location.href='/admin'" class="button is-success menulogin">Login</div>
+                        <div onclick="window.location.href='/admin'" class="button is-success">Login</div>
                     @else
-                        <div onclick="window.location.href='/logout'" class="button is-danger menulogin">Logout</div>
+                        <div onclick="window.location.href='/logout'" class="button is-danger">Logout</div>
                     @endif
+                </div>
             </div>
         </div>
     </div>

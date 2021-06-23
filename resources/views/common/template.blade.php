@@ -30,5 +30,13 @@
     <script type="text/javascript" src="{{ asset('js/alert.js') }}"></script>
 @endif
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js"></script>
+<script>
+    const burgerMenu = document.querySelector(".navbar-burger");
+    console.log(burgerMenu);
+    burgerMenu.addEventListener('click', () => {
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+    })
+</script>
 </body>
 </html>
